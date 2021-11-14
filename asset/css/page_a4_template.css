@@ -1,0 +1,95 @@
+body .content-wrapper {
+  background: rgb(204,204,204)!important;
+}
+/*  SETTING PRITN */
+@page :left {
+  margin-left: 2cm;
+}
+
+@page :right {
+  margin-left: 2cm;
+}
+
+page {
+  background: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.3cm rgba(0,0,0,0.3);
+  font-size: 11pt;
+  font-family: "calibri",verdana, sans-serif;
+}
+page[size="A4"] {
+  width: 21.5cm;
+  min-height: 29.7cm;
+  padding: 1.5cm 1.5cm 1.5cm 2cm ;
+}
+page[size="A4-flex"] {
+  width: 21.5cm;
+  height:auto;
+  padding: 1.5cm 1.5cm 1.5cm 2cm ;
+}
+page[size="A4"][layout="landscape"] {
+  width: 29.7cm;
+  height: 21cm;
+  padding: 2cm;
+}
+page[size="A3"] {
+  width: 29.7cm;
+  height: 42cm;
+}
+page[size="A3"][layout="landscape"] {
+  width: 42cm;
+  height: 29.7cm;
+}
+page[size="A5"] {
+  width: 14.8cm;
+  height: 21cm;
+}
+page[size="A5"][layout="landscape"] {
+  width: 21cm;
+  height: 14.8cm;
+}
+
+@media print {
+  body, page {
+    margin: 0;
+    box-shadow: 0;
+    display: block;
+    page-break-before: always;
+  }
+}
+
+page input[type=text], page input[type=number], page textarea, page select{
+    border: 1px solid rgb(219, 219, 219);
+    padding: 3px 10px;
+    line-height: 10pt;
+    border-radius: 4px;
+    -webkit-border-radius:4px
+    -moz-border-radius:4px
+    color:#b17979;
+}
+page input[type=text]:hover, page input[type=number]:hover, page textarea:hover{
+    border: 1px solid rgb(240, 136, 41);
+}
+
+page .justify{
+    text-align: justify;
+}
+
+page .table {
+  border-collapse: collapse;
+  width: 100%;
+}
+page .tabel th, page .tabel td {
+  border: 1px solid rgb(129, 129, 129);
+  padding: 5px;
+  text-align: left;
+}
+
+.is-invalid{
+    color: rgb(255, 0, 0);
+    position: relative;
+    display: inline-block;
+    left:0;
+}

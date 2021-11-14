@@ -1,0 +1,237 @@
+/*  SETYLE FONT */
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700&subset=latin-ext');
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+.bg-footer{
+    font-size: 16px;
+    color:#eeeeee;
+    text-shadow: 1px 1px 1px rgba(0, 34, 34, 1);
+}
+
+footer.sticky-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 56px;
+background:#9e9e9e!important;
+-webkit-box-shadow: inset 0px 10px 5px -8px rgba(112,112,112,1);
+-moz-box-shadow: inset 0px 10px 5px -8px rgba(112,112,112,1);
+box-shadow: inset 0px 10px 5px -8px rgba(112,112,112,1);
+}
+.scroll-to-top {
+  position: fixed;
+  right: 15px;
+  bottom: 3px;
+  display: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  color: white;
+  background: rgba(52, 58, 64, 0.5);
+  line-height: 45px;
+}
+
+.scroll-to-top:focus, .scroll-to-top:hover {
+  color: white;
+}
+
+.scroll-to-top:hover {
+  background: #343a40;
+}
+
+.scroll-to-top i {
+  font-weight: 800;
+}
+
+.card {
+  -webkit-box-shadow: 1px 1px 1px 1px #e6e6e6;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    1px 1px 1px 1px #e6e6e6;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         1px 1px 1px 1px #e6e6e6;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+p.slideshow_deskripsi{
+    background:rgba(9, 9, 9,0.5); color:#ffffff; padding:10px; border-radius:8px;font-size:12pt;
+    font-family: 'Titillium Web', sans-serif!important;
+}
+
+.carousel-inner{
+    margin-top: 30px;
+    background: rgb(124, 9, 214);
+    width: 100%;
+    min-height: 560px;
+}
+
+#myCarousel.gambar{
+    background: rgb(124, 9, 214);
+    width: 100%;
+    min-height: 600px!important;
+}
+/**********************************************************/
+/*             EDITING NAVBAR                             */
+/**********************************************************/
+nav .navbar-toggler{
+    margin-right: 20px;
+    border-color: #369602!important;
+    width: 45px;
+    padding: 5px;
+}
+nav .navbar-toggler:hover{
+    border-color: #db153f!important;
+    background: rgb(255, 198, 220);
+}
+nav .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 148, 0, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")!important;
+}
+nav .navbar-toggler-icon:hover{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 0, 46, 0.64)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")!important;
+}
+
+/********** NAVBAR *********/
+nav.navbar{
+    padding: 0px;
+    margin: 0px;
+    /* border-bottom: 3px solid rgba(20, 88, 70,1)!important; */
+    border-bottom: 3px solid rgba(218, 98, 21, 1)!important;
+    /* background: rgba(104, 134, 126,0.8)!important; */
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    height: 100px;
+}
+
+nav .wrap_brand{
+    padding: 0px 25px;
+    margin: 0px;
+    clear: both;
+    float:left;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+nav .title_brand{
+    font-size: 28px;
+    font-weight: 600;
+    font-family: 'Titillium Web', sans-serif;
+    letter-spacing:0.06em;
+    line-height: 30px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+nav .description_brand{
+    font-size: 0.8em;
+    font-weight: 300;
+    font-family: 'Titillium Web', sans-serif;
+    margin: 0px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+nav .wrap_brand img{
+    float: left;
+    margin: 0px 10px 0px 0px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+nav.navbar .navbar-nav{
+    min-height: 100px;
+}
+nav.navbar .nav-item{
+    display: table;
+    overflow: hidden;
+}
+nav.navbar .nav-item .nav-link{
+    height: 100px;
+    padding: 0 18px;
+    display: table-cell;
+    vertical-align: middle;
+    -webkit-transition: background-color 0.5s ease;
+  -moz-transition: background-color 0.5s ease;
+  -o-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+}
+
+nav.navbar .nav-item .nav-link:hover, nav.navbar .nav-item .nav-link:active,
+nav.navbar .nav-item .nav-link:focus{
+    background: rgb(96, 97, 86) ;
+    color: #ffffff;
+    -webkit-transition: all 0.4s fade-in;
+    transition: all 0.4s fade-in;
+}
+nav.navbar .nav-item.active > .nav-link{
+    background: rgb(96, 97, 86) ;
+    height: 103px;
+    color: #ffffff;
+    -webkit-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+}
+
+@media (min-width:768px) {
+
+    /********** NAVBAR MINI *********/
+    nav.mini_nav{
+        height: 50px;
+        background: rgba(224, 224, 224, 1)!important;
+    }
+
+    nav.mini_nav .wrap_brand{
+       padding: 0 25px;
+       margin: -5px 0;
+       -webkit-transition: all 0.4s ease;
+       transition: all 0.4s ease;
+    }
+    nav.mini_nav img{
+        height: 40px;
+        width: 40px;
+        -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    nav.mini_nav .title_brand{
+       font-size: 18px;
+       margin-top: -3px;
+       -webkit-transition: all 0.4s ease;
+       transition: all 0.4s ease;
+    }
+    nav.mini_nav .description_brand{
+       font-size: 14px;
+       padding: 0px;
+       margin: -8px 0;
+       -webkit-transition: all 0.4s ease;
+       transition: all 0.4s ease;
+    }
+    nav.mini_nav .navbar-nav{
+        min-height: 50px;
+        -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    nav.navbar .nav-item{
+        overflow: hidden;
+    }
+    nav.mini_nav .nav-item .nav-link{
+        height: 50px;
+        -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    nav.mini_nav .nav-item.active > .nav-link{
+        height: 53px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav.navbar{
+        height: auto;
+    }
+    nav.navbar .nav-item .nav-link{
+        height: 40px;
+    }
+    nav.navbar .nav-item.active > .nav-link{
+        height: 45px;
+    }
+}

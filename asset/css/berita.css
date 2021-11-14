@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600&effect=emboss');
+/* SETTING KATEGORi BERITA */
+.berita{
+    padding: 5px 0;
+    font-family: sans-serif;
+    font-size: 14px;
+    color:#464646;
+    font-style: normal;
+    text-decoration: none;
+    height: 350px;
+    width: 100%;
+    overflow-y: hidden;
+    background:#fff;
+    position: relative;
+    border-bottom: 1px solid #d4d4d4;
+}
+.berita .bottom_shade {
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 1%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 1%,rgba(255,255,255,1) 40%,rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 1%,rgba(255,255,255,1) 40%,rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
+    height: 90px;
+    width: 100%;
+    left:0px;
+    bottom: 0px;
+    position: absolute;
+    padding: 0px 0px 70px 0px;
+    margin: 0px;
+}
+.berita img, .content img{
+    margin: 12px 8px;
+    padding: 5px;
+    background:#f4f4f4;
+    -webkit-box-shadow: 0px 24px 25px -11px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 24px 25px -11px rgba(0,0,0,0.3);
+    box-shadow: 0px 24px 25px -11px rgba(0,0,0,0.3);
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+}
+.judul_berita_sm{
+    font-size: 24px;
+    font-family: verdana, calibri, sans-serif;
+    font-weight: 700;
+    color: rgb(21, 63, 98);
+}
+.ketagori_berita_sm{
+    font-family: verdana, calibri, sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 200;
+    padding: 3px 9px;
+    color: rgb(235, 235, 235);
+    border-radius: 9px;
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.4); */
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
+    -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
+}
+.ketagori_berita_sm:hover,.ketagori_berita_sm:active{
+    background: #000!important;
+    color: #ffffff;
+}
+.widget{
+    padding: 7px 15px 20px 15px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: #ffffff;
+    width: 100%;
+}
+.widget_sm{
+    font-family: verdana, calibri, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 200;
+    padding: 3px 5px;
+    color: rgb(142, 142, 142);
+}
+.widget_sm:hover,.widget_sm:active{
+    color:#000000;
+}
+
+
+/****** BERITA PUBLIC *****/
+.widget_header{
+    width: 100%;
+    margin-top: 1.3rem;
+    margin-bottom: 0.4rem;
+}
+
+a.header_berita, .header_berita{
+    font-size: 32px;
+    font-weight: 400;
+    color: #535353;
+    font-family: 'Titillium Web',verdana, sans-serif;
+
+}
+a.header_berita:hover,a.header_berita:active{
+    color: #40a73e;
+    text-decoration: none;
+}
+
+.ketagori_berita_lg{
+    font-family: verdana, calibri, sans-serif;
+    font-size:15px;
+    font-style: normal;
+    font-weight: 200;
+    padding: 6px 12px;
+    color: rgb(235, 235, 235);
+    border-radius: 6px;
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.4); */
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
+    -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
+}
+.ketagori_berita_lg:hover,.ketagori_berita_lg:active{
+    background: #000!important;
+    color: #ffffff;
+}
+
+a.readmore{
+    font-size: 13px;
+    color: #8b8b8b;
+    text-decoration: none;
+    padding: 4px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-transition: background-color 0.3s ease-in-out;
+    -moz-transition: background-color 0.3s ease-in-out;
+    -o-transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+}
+a.readmore:hover{
+background: rgba(20, 88, 70,0.7)!important;
+color: #ffffff!important;
+}
+.back_button{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #f0f0f0;
+    border: 1px solid #cbcbcb;
+    border-radius: 100%;
+    text-align: center;
+    margin-right: 7px;
+    padding: 6px;
+    font-size: 18px;
+    color: #b4b4b4;
+    cursor: pointer;
+}
+.back_button:hover{
+    background: #bababa;
+    color:#fff;
+}
+
+.list-group-item-action:hover{
+    background:rgba(207, 207, 207,0.3);
+}
+@media (max-width: 60em) {
+  /* Bump up size of carousel content */
+    .header_berita{
+        font-size: 20px;
+        font-weight: 400;
+        color: #535353;
+        font-family: 'Titillium Web',verdana, sans-serif;
+    }
+    .ketagori_berita_lg{
+        font-size: 14px;
+    }
+}
