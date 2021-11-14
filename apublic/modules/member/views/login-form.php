@@ -24,4 +24,8 @@
                     <label class="custom-control-label" for="customControlAutosizing">Remember my preference</label>
                   </div>
                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+                <div class="mt-4 mb-3">
+                  <i class="fa fa-leaf"></i> Lupa password, silahkan <a class="" href="">klik disini</a>
+                </div>
            </form>

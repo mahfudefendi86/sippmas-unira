@@ -52,23 +52,21 @@
       $u1=$this->uri->slash_segment(1);
       $u2=$this->uri->slash_segment(2);
     ?>
-  <body class="sticky-footer" id="page-top">
-    <main role="main">
+  <body id="page-top">
+    <main role="main" id="main">
         <div class="container">
         <!-- Three columns of text below the carousel -->
 
                     <?php echo isset($content)?$content:"";?>
 
         </div><!-- /.container -->
-
-
-      <!-- FOOTER -->
-      <footer  class="sticky-footer bg-footer">
-        <div class="container">
-            <div class="text-center">SIPPMas &copy; 2017-2018 LPPM Unira Malang</div>
-        </div>
-      </footer>
     </main>
+    <!-- FOOTER -->
+    <footer  class="sticky-footer bg-footer">
+      <div class="container">
+          <div class="text-center">SIPPMas &copy; 2017-2021 LPPM Unira Malang</div>
+      </div>
+    </footer>
     <div id="ajax_loader" class="loader_anim" ></div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
