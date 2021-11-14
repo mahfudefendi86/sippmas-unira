@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['registrasi/kkn'] = 'main/registrasi_kkn';
+$route['password/reset'] = 'member_login/reset_form';

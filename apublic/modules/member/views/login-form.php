@@ -26,6 +26,6 @@
                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
                 <div class="mt-4 mb-3">
-                  <i class="fa fa-leaf"></i> Lupa password, silahkan <a class="" href="">klik disini</a>
+                  <i class="fa fa-leaf"></i> Lupa password, silahkan <a class="" href="<?php echo site_url("password/reset");?>">klik disini</a>
                 </div>
            </form>

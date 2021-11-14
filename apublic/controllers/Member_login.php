@@ -70,6 +70,50 @@ class Member_login extends CI_Controller
 	}
 
 
+	/*** RESET PASSWORD BY EMAIL ***/
+	function reset_form(){
+		$data['title']="Reset Password SIPPMAS";
+		$this->template->login('member/lupa_password',$data); ///diarahkan pada template halaman login
+	}
+
+	function reset_password(){
+		$email = $this->input->post('email',TRUE);
+		if($email!="" || $email!=NULL){
+			$reset= $this->access->reset_password($email);
+			if($reset=="500"){
+				$data['info']="Akun anda tidak aktif!";
+				$data['content']="Untuk dapat menikmati fasilitas yang terdapat pada aplikasi ini, silahkan hubungi administrator SIPPMAS dan lakukan verifikasi data";
+				$data['status']="error";
+			}else
+			if($reset=="404"){
+				$data['info']="Akun tidak ditemukan!";
+				$data['content']="Sistem kami tidak berhasil mendeteksi keberadaan akun/email anda, silahkan hubungi administrator SIPPMAS.";
+				$data['status']="warning";
+			}else
+			if($reset=="error"){
+				$data['info']="Reset Password Gagal!";
+				$data['content']="Terjadi kesalahan saat sistem memproses password akun anda. Mohon untuk mengulangi proses Reset Password.";
+				$data['status']="error";
+			}else{
+				$data['info']="Reset Password Sukses!";
+				$data['content']="Selamat!, Proses reset password anda berhasil.<br/><br/>Kami telah mengirimkan password melalui alamat email anda. Silahkan periksa pada kotak masuk (inbox) atau folder spam pada akun email anda (".$email.").";
+				$data['status']="sukses";
+				/*** Jika berhasil maka lakukan kirim email ***/
+				$send['dari_nama']=$this->config->item('email_name');
+				$send['dari']=$this->config->item('email_address');
+				$send['tujuan']=$email;
+				$send['subject']='Reset Password';
+
+				$message=$this->load->view('member/email_reset_password','',true);
+				$send['pesan']=$message;
+				$send['cc']="";
+				//kirim_email($send);
+			}
+
+			$this->template->login('member/lupa_password',$data);
+		}
+	}
+	
 	/*API JSON LOGIN */
 	function APIRequestLogin(){
 		$username = $this->input->post('username',TRUE);

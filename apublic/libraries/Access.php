@@ -60,5 +60,26 @@ class Access
 		$this->CI->session->sess_destroy();
 	}
 
+	
+	/** Reset Password **/
+	function reset_password($email){
+		$result=$this->cekin_model->get_user($email);
+		if($result->num_rows() > 0){
+			$user=$result->row();
+			$random=generate_psw();
+			$password=do_hash('de23239mex'.$random.'by4489#&4','md5');
+			if($user->status=="AKTIF"){
+				$dataupd=array("password"=>$password,"updated"=>date('Y-m-d H:i:s'));
+				$upd=$this->cekin_model->update_userlogin($dataupd,$user->id_login);
+				if($upd){
+					return $random;
+				}else{
+					return 'error';
+				}
+			}
+			return '500';
+		}
+		return '404';
+	}
 
 }
