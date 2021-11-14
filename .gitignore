@@ -102,3 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# Ignore Folder Thirdparty Codeigniter
+apublic/third_party/mpdf
+apublic/third_party/MX
+file_uploaded
+file_download
+captcha
+DB_BACKUP
