@@ -197,6 +197,8 @@ class Main extends CI_Controller
         $data['title'] = "Registrasi Peserta Kuliah Kerja Nyata (KKN)";
         $data['id_fakultas'] = $this->main_model->select_fakultas()->result();
         $data['provinsi'] = $this->main_model->selectProvinsi()->result();
+        $data['image'] = $this->_create_captcha();
+        var_dump($this->session->userdata('kode_capthca'));
         //print("<pre>" . print_r($data, true) . "</pre>");
         $this->template->display('main/kkn_reg', $data);
     }
@@ -235,6 +237,8 @@ class Main extends CI_Controller
             "ukuran_jaket" => $in["kknn_ukuran_jaket"],
             //"berkas" => $upload_image, //$in["kknn_upload"],
         ];
+
+        $captcha = $in['security_code'];
 
         //$upload_image = $_FILES['kknn_upload']['name'];
 
@@ -275,26 +279,81 @@ class Main extends CI_Controller
             'message' => $message,
         ];
 
-        $sendmail = $this->send_email($data_email);
+        if ($captcha == $this->session->userdata('kode_capthca')) {
+            $sendmail = $this->send_email($data_email);
 
-        if ($sendmail['status'] == "success") {
-            $input_data = $this->db->insert('kkn_peserta_registrasi', $data_in);
+            if ($sendmail['status'] == "success") {
+                $input_data = $this->db->insert('kkn_peserta_registrasi', $data_in);
 
-            if ($input_data) {
-                $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Pendaftaran KKN Berhasil...
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-                echo json_encode(array('msg' => $notif, 'status' => 'OK'));
+                if ($input_data) {
+                    $notif = "Pendaftaran KKN Berhasil.";
+                    //     $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Pendaftaran KKN Berhasil...
+                    // <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                    echo json_encode(array('msg' => $notif, 'status' => 'OK'));
+                } else {
+                    $notif = "Pendaftaran KKN Gagal.";
+                    //     $notif = '<div class="alert alert-danger alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-exclamation-triangle"></i> <strong>Maaf!</strong> Pendaftaran KKN Gagal...
+                    // <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                    echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
+                }
             } else {
-                $notif = '<div class="alert alert-danger alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-exclamation-triangle"></i> <strong>Maaf!</strong> Pendaftaran KKN Gagal...
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                $notif = "Pendaftaran KKN Gagal, Email gagal dikirimkan. Pastikan email anda valid.";
                 echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
             }
+
+            $this->session->unset_userdata('kode_capthca');
+            //$this->template->display('main/kkn_reg', $data);
+        } else {
+            // $data['info'] = '<br />
+            //  <div class="alert alert-danger">Maaf Kode Capthca anda tidak sama...
+            //      <a href="' . site_url('util/gantipass') . '" title="Ganti Password" class="btn btn-xs btn-warning">Kembali</a></div>
+            // ';
+            $notif = "Maaf Kode Capthca anda tidak sama.";
+            echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
         }
 
-        //\var_dump($data_in, /*$sendmail,*/ $input_data);
+        //var_dump($data_in, $captcha, $this->session->userdata('kode_capthca'));
     }
 
-    public function send_email($data)
+    private function _create_captcha()
+    {
+        // we will first load the helper. We will not be using autoload because we only need it here
+        $this->load->helper('captcha');
+        // we will set all the variables needed to create the captcha image
+        $options = array(
+            'img_path' => './captcha/',
+            'img_url' => base_url() . 'captcha/',
+            'img_width' => 150,
+            'img_height' => 40,
+            'border' => 0,
+            'expiration' => 7200,
+        );
+        //now we will create the captcha by using the helper function create_captcha()
+        $cap = create_captcha($options);
+        // we will store the image html code in a variable
+        $image = $cap['image'];
+
+        // ...and store the captcha word in a session
+        $this->session->set_userdata('kode_capthca', $cap['word']);
+        // we will return the image html
+        return $image;
+    }
+
+    public function konfirmasi_kkn()
+    {
+        $in = $this->input->post(null, true);
+
+        // $data_in = [
+        //     "id_login" =>
+        //     "userid" =>
+        //     "username" =>
+        //     "password" =>
+        //     "nama" =>
+
+        // ];
+    }
+
+    private function send_email($data)
     {
         $this->load->library('email');
 

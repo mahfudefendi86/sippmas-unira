@@ -6,7 +6,7 @@ $is_edit = (isset($peserta_kkn));
         Lengkapi formulir pendaftaran KKN berikut ini dan upload bukti pembayaran.
     </div>
 	<form class="form-horizontal" role="form" name="formpeserta_kkn" id="peserta_kkn" action="<?php echo site_url('main/save_kkn'); ?>" method="post" enctype="multipart/form-data">
-	<input type="hidden" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->id_peserta; ?>" name="kknn_id_peserta" id="kknn_id_peserta" placeholder="Id Peserta"   />
+    <input type="hidden" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->id_peserta; ?>" name="kknn_id_peserta" id="kknn_id_peserta" placeholder="Id Peserta"   />
     <div class="form-group row">
         <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_nama_lengkap">Nama Lengkap <span class="text-danger font-weight-bold">*</span></label>
         <div class="col-sm-12 col-md-8 col-lg-9">
@@ -364,22 +364,33 @@ if (isset($id_prodi)) {
     </div>
 
     <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_upload">Upload Bukti Pembayaran (max 1MB) <span class="text-danger font-weight-bold">*</span></label>
+        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_upload">Upload Bukti Pembayaran (jpg/pdf) <span class="text-danger font-weight-bold">*</span></label>
         <div class="col-sm-12 col-md-8 col-lg-9">
             <input type="file" class="form-control-file" name="kknn_upload" id="kknn_upload" accept=".jpg,.jpeg,.pdf">
+            <label for="p3">(Ukuran file max 1MB)</label>
         </div>
     </div>
+
+    <div class="form-group row">
+        <label class="col-sm-12 col-md-4 col-lg-3" for="security_code"></label>
+        <div class="col-sm-12 col-md-8 col-lg-9">
+            <p><?php echo $image; ?></p>
+            <label for="p3">Masukan Kode Captcha Diatas</label>
+            <input type="text" name="security_code" id="security_code"  value="" class="inputan form-control" placeholder="Kode Captcha" />
+        </div>
+    </div>
+    <br/>
 
     <hr/>
 		<div class="form-group row">
 			<div class="col-sm-12 col-md-12">
 				<div class="row justify-content-md-center">
 					<div class="col-md-4 col-lg-4 col-sm-12 m-1">
-						<button type="submit" class="btn btn-primary btn-lg col-12"><span class="fa fa-save"></span> Simpan</button>
+						<button type="submit" class="btn btn-primary btn-lg col-12"><span class="fa fa-save"></span> Daftar</button>
 					</div>
-					<div class="col-md-4 col-lg-4 col-sm-12 m-1">
+					<!-- <div class="col-md-4 col-lg-4 col-sm-12 m-1">
 						<button type="reset"  class="btn btn-warning btn-lg col-12" onclick="$('#modalView_peserta_kkn').modal('hide');"><span class="fa fa-refresh"></span> Batal</button>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -434,7 +445,7 @@ if (isset($id_prodi)) {
                             //     type: 'green',
                             //     content: obj.msg,
                             // });
-                            alert("Pendaftaran KKN Berhasil");
+                            alert(obj.msg);
                         }else
                         if(obj.status=="ERROR"){
                             // $.alert({
@@ -442,7 +453,7 @@ if (isset($id_prodi)) {
                             //     type: 'red',
                             //     content: obj.msg,
                             // });
-                            alert("Pendaftaran KKN Gagal");
+                            alert(obj.msg);
                         }
                         $("#ajax_loader").fadeOut(100);
             }
