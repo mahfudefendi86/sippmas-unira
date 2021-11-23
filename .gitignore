@@ -1,3 +1,6 @@
+# ignore database
+database.php
+
 # Logs
 logs
 *.log
