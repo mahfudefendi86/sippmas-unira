@@ -371,6 +371,8 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
+    <hr>
+
     <div class="form-group row">
         <label class="col-sm-12 col-md-4 col-lg-3" for="security_code"></label>
         <div class="col-sm-12 col-md-8 col-lg-9">
@@ -406,23 +408,49 @@ if (isset($id_prodi)) {
     wrapper: "span",
     rules:{
             kknn_nama_lengkap: { required: true },
-            // kknn_email: { required: true },
-            // kknn_nomer_hp: { required: true },
-            // kknn_nim: { required: true },
-            // kknn_jenis_kelamin: { required: true },
-            // kknn_fakultas: { required: true },
-            // kknn_program_pendidikan: { required: true },
-            // kknn_bekerja: { required: true }
+            kknn_email: { required: true },
+            kknn_nomer_hp: { required: true },
+            kknn_nim: { required: true },
+            kknn_jenis_kelamin: { required: true },
+            kknn_tempat_lahir: { required: true },
+            kknn_tanggal_lahir: { required: true },
+            kknn_usia: { required: true },
+            kknn_alamat_domisili: { required: true },
+            kknn_provinsi: { required: true },
+            kknn_kota: { required: true },
+            kknn_kecamatan: { required: true },
+            kknn_kelurahan: { required: true },
+            kknn_fakultas: { required: true },
+            kknn_program_pendidikan: { required: true },
+            kknn_kondisi_kesehatan: { required: true },
+            kknn_penyakit: { required: true },
+            "kknn_memiliki_keluarga[]": { required: true },
+            kknn_bekerja: { required: true },
+            kknn_ukuran_jaket: { required: true },
+            kknn_upload: { required: true }
         },
     messages:{
-            kknn_nama_lengkap: { required: '<div class="badge badge-danger badge-pill">Nama Lengkap wajib diisi!</div>'  },
-            // kknn_email: { required: '<div class="badge badge-danger badge-pill">Email wajib diisi!</div>'  },
-            // kknn_nomer_hp: { required: '<div class="badge badge-danger badge-pill">Nomer HP wajib diisi!</div>'  },
-            // kknn_nim: { required: '<div class="badge badge-danger badge-pill">NIM wajib diisi!</div>'  },
-            // kknn_jenis_kelamin: { required: '<div class="badge badge-danger badge-pill">Jenis Kelamin wajib diisi!</div>'  },
-            // kknn_fakultas: { required: '<div class="badge badge-danger badge-pill">Fakultas wajib diisi!</div>'  },
-            // kknn_program_pendidikan: { required: '<div class="badge badge-danger badge-pill">Program Pendidikan wajib diisi!</div>'  },
-            // kknn_bekerja: { required: '<div class="badge badge-danger badge-pill">Bekerja wajib diisi!</div>'  }
+            kknn_nama_lengkap: { required: 'Nama Lengkap wajib diisi' },
+            kknn_email: { required: 'Email wajib diisi' },
+            kknn_nomer_hp: { required: 'Nomor HP wajib diisi' },
+            kknn_nim: { required: 'NIM wajib diisi' },
+            kknn_jenis_kelamin: { required: 'Jenis Kelamin wajib dipilih' },
+            kknn_tempat_lahir: { required: 'Tempat Lahir wajib diisi' },
+            kknn_tanggal_lahir: { required: 'Tanggal Lahir wajib diisi' },
+            kknn_usia: { required: 'Usia wajib diisi' },
+            kknn_alamat_domisili: { required: 'Alamat Domisili wajib diisi' },
+            kknn_provinsi: { required: 'Provinsi wajib dipilih' },
+            kknn_kota: { required: 'Kota wajib dipilih' },
+            kknn_kecamatan: { required: 'Kecamatan wajib dipilih' },
+            kknn_kelurahan: { required: 'Kelurahan wajib dipilih' },
+            kknn_fakultas: { required: 'Fakultas wajib dipilih' },
+            kknn_program_pendidikan: { required: 'Prodi wajib dipilih' },
+            kknn_kondisi_kesehatan: { required: 'Kondisi Kesehatan wajib dipilih' },
+            kknn_penyakit: { required: 'Penyakit wajib dipilih' },
+            "kknn_memiliki_keluarga[]": { required: 'Memiliki Suami/Istri/Anak wajib diceklis' },
+            kknn_bekerja: { required: 'Sedang Bekerja wajib dipilih' },
+            kknn_ukuran_jaket: { required: 'Ukuran Jaket wajib dipilih' },
+            kknn_upload: { required: 'Berkas Bukti Pembayaran wajib diupload' }
         },
 
     submitHandler: function(form) {

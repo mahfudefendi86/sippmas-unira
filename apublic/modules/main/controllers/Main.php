@@ -22,6 +22,7 @@ class Main extends CI_Controller
     {
         parent::__construct();
         $this->load->helper(array('url', 'format_tanggal'));
+        $this->load->library('template');
         $this->load->model(array('main_model', 'berita/berita_model', 'kategori/kategori_model', 'peneliti/peneliti_model', 'reviewer/reviewer_model', 'slideshow/slideshow_model'));
     }
 
@@ -198,7 +199,6 @@ class Main extends CI_Controller
         $data['id_fakultas'] = $this->main_model->select_fakultas()->result();
         $data['provinsi'] = $this->main_model->selectProvinsi()->result();
         $data['image'] = $this->_create_captcha();
-        var_dump($this->session->userdata('kode_capthca'));
         //print("<pre>" . print_r($data, true) . "</pre>");
         $this->template->display('main/kkn_reg', $data);
     }
@@ -240,8 +240,6 @@ class Main extends CI_Controller
 
         $captcha = $in['security_code'];
 
-        //$upload_image = $_FILES['kknn_upload']['name'];
-
         if ($upload_image) {
             $config = [
                 'allowed_types' => 'jpg|jpeg|pdf',
@@ -255,15 +253,10 @@ class Main extends CI_Controller
             $this->upload->initialize($config);
 
             if ($this->upload->do_upload('kknn_upload')) {
-                /*$old_image = $in['recent_image'];
-                if ($old_image != 'user-default.png') {
-                unlink(FCPATH . 'assets/uploads/img/profile/' . $old_image);
-                }*/
                 $new_image = [
                     'berkas' => $this->upload->data('file_name'),
                 ];
                 $data_in = array_merge($data_in, $new_image);
-                //var_dump($new_image);
             } else {
                 echo $this->upload->dispay_errors();
             }
@@ -287,32 +280,84 @@ class Main extends CI_Controller
 
                 if ($input_data) {
                     $notif = "Pendaftaran KKN Berhasil.";
-                    //     $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Pendaftaran KKN Berhasil...
+                    // $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Pendaftaran KKN Berhasil...
                     // <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                     echo json_encode(array('msg' => $notif, 'status' => 'OK'));
+
+                    $this->session->unset_userdata('kode_capthca');
                 } else {
                     $notif = "Pendaftaran KKN Gagal.";
-                    //     $notif = '<div class="alert alert-danger alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-exclamation-triangle"></i> <strong>Maaf!</strong> Pendaftaran KKN Gagal...
+                    // $notif = '<div class="alert alert-danger alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-exclamation-triangle"></i> <strong>Maaf!</strong> Pendaftaran KKN Gagal...
                     // <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                     echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
                 }
             } else {
+                // $notif = '<div class="alert alert-danger alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-exclamation-triangle"></i> <strong>Maaf!</strong> Pendaftaran KKN Gagal, Email gagal dikirimkan. Pastikan email anda valid.
+                // <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                 $notif = "Pendaftaran KKN Gagal, Email gagal dikirimkan. Pastikan email anda valid.";
                 echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
             }
-
-            $this->session->unset_userdata('kode_capthca');
-            //$this->template->display('main/kkn_reg', $data);
         } else {
-            // $data['info'] = '<br />
-            //  <div class="alert alert-danger">Maaf Kode Capthca anda tidak sama...
-            //      <a href="' . site_url('util/gantipass') . '" title="Ganti Password" class="btn btn-xs btn-warning">Kembali</a></div>
-            // ';
+            // $notif = '<div class="alert alert-danger alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-exclamation-triangle"></i> <strong>Maaf!</strong> Kode Capthca anda tidak sama.
+            // <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
             $notif = "Maaf Kode Capthca anda tidak sama.";
             echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
         }
+    }
 
-        //var_dump($data_in, $captcha, $this->session->userdata('kode_capthca'));
+    public function konfirmasi_kkn($id_peserta = null)
+    {
+        $in = $this->input->post(null, true);
+
+        $data['mhs'] = $this->db->get_where('kkn_peserta_registrasi', ['id_peserta' => $id_peserta])->row_array();
+
+        if (!$in) {
+            $data['title'] = "Konfirmasi Pendaftaran Peserta Kuliah Kerja Nyata (KKN)";
+            $data['image'] = $this->_create_captcha();
+            $data['id_peserta'] = $id_peserta;
+
+            $this->template->login('main/kkn_conf', $data);
+        } else {
+            $mhs = $data['mhs'];
+
+            $data_in = [
+                "id_login" => random_id(),
+                "userid" => $id_peserta,
+                "username" => $in['username'],
+                "password" => password_hash($in['password'], PASSWORD_DEFAULT),
+                "nama" => $mhs['nama_mhs'],
+                "alamat" => $mhs['alamat_domisili'],
+                "email_recv" => $mhs['email'],
+                "hp_recv" => $mhs['hp'],
+                "created" => date('Y-m-d H:i:s'),
+                // "updated" => date('Y-m-d H:i:s'),
+                "identifikasi" => "MAHASISWA",
+                "status" => "NONAKTIF",
+            ];
+
+            $captcha = $in['security_code'];
+
+            if ($in['password'] == $in['conf_password']) {
+                if ($captcha == $this->session->userdata('kode_capthca')) {
+                    $input_data = $this->db->insert('_m_usr_login', $data_in);
+
+                    if ($input_data) {
+                        $notif = "Konfirmasi Pendaftaran KKN Berhasil.";
+                        echo json_encode(array('msg' => $notif, 'status' => 'OK'));
+                    } else {
+                        $notif = "Konfirmasi Pendaftaran KKN Gagal.";
+                        echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
+                    }
+                    $this->session->unset_userdata('kode_capthca');
+                } else {
+                    $notif = "Maaf Kode Capthca anda tidak sama.";
+                    echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
+                }
+            } else {
+                $notif = "Password konfirmasi harus sama dengan password.";
+                echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
+            }
+        }
     }
 
     private function _create_captcha()
@@ -337,20 +382,6 @@ class Main extends CI_Controller
         $this->session->set_userdata('kode_capthca', $cap['word']);
         // we will return the image html
         return $image;
-    }
-
-    public function konfirmasi_kkn()
-    {
-        $in = $this->input->post(null, true);
-
-        // $data_in = [
-        //     "id_login" =>
-        //     "userid" =>
-        //     "username" =>
-        //     "password" =>
-        //     "nama" =>
-
-        // ];
     }
 
     private function send_email($data)
