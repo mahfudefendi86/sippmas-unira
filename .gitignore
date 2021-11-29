@@ -111,3 +111,4 @@ file_uploaded
 file_download
 captcha
 DB_BACKUP
+apublic/config/database.php
