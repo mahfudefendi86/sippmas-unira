@@ -42,6 +42,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -68,19 +69,28 @@ $(document).ready(function(){
             type      : frm.attr("method"),
             dataType  : "html",
             data      : frm.serialize(),
-            // beforeSend:function(data){
-            //     $("#ajax_loader").fadeIn(100);
-            // },
+            beforeSend:function(data){
+                $("#ajax_loader").fadeIn(100);
+            },
             success:function(data){
                     obj = JSON.parse(data);
-                    //console.log(obj);
                     if(obj.status=="OK"){
-                        alert(obj.msg);
+                        Swal.fire({
+                            icon: 'success',
+                            title: obj.status,
+                            text: obj.msg,
+                        }).then(function(){
+                            window.location.href = "<?=base_url()?>";
+                        })
                     }else
                     if(obj.status=="ERROR"){
-                        alert(obj.msg);
+                        Swal.fire({
+                            icon: 'error',
+                            title: obj.status,
+                            text: obj.msg,
+                        })
                     }
-                    // $("#ajax_loader").fadeOut(100);
+                    $("#ajax_loader").fadeOut(100);
             }
         });
     }

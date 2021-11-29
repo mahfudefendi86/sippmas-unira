@@ -400,6 +400,7 @@ if (isset($id_prodi)) {
 </form>
 </div>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js" type="text/javascript"></script>
 <script type="text/javascript">
  $("#peserta_kkn").validate({
@@ -468,20 +469,20 @@ if (isset($id_prodi)) {
                 success:function(data){
                         obj = JSON.parse(data);
                         if(obj.status=="OK"){
-                            // $.alert({
-                            //     title: 'Informasi',
-                            //     type: 'green',
-                            //     content: obj.msg,
-                            // });
-                            alert(obj.msg);
+                            Swal.fire({
+                                icon: 'success',
+                                title: obj.status,
+                                text: obj.msg,
+                            }).then(function(){
+                                window.location.href = "<?=base_url()?>";
+                            })
                         }else
                         if(obj.status=="ERROR"){
-                            // $.alert({
-                            //     title: 'Peringatan',
-                            //     type: 'red',
-                            //     content: obj.msg,
-                            // });
-                            alert(obj.msg);
+                            Swal.fire({
+                                icon: 'error',
+                                title: obj.status,
+                                text: obj.msg,
+                            })
                         }
                         $("#ajax_loader").fadeOut(100);
             }
