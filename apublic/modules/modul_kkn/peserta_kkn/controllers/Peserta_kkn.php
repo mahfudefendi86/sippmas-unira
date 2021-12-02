@@ -9,7 +9,7 @@ class Peserta_kkn extends Member_Control
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper(array('url'));
+        $this->load->helper(array('url', 'format_tanggal'));
         $this->load->model(array('peserta_kkn_model', 'main/main_model'));
         active_link("master");
     }
@@ -100,6 +100,29 @@ class Peserta_kkn extends Member_Control
                 "ukuran_jaket" => $in["kknn_ukuran_jaket"],
                 //"berkas" => $upload_image, //$in["kknn_upload"],
             ];
+
+            if ($upload_image) {
+                $config = [
+                    'allowed_types' => 'jpg|jpeg|pdf',
+                    'max_size' => '1024',
+                    'file_name' => str_replace(' ', '_', 'kkn_' . $data_in['nim']),
+                    'upload_path' => './asset/uploads/berkas/pembayaran_kkn/',
+                ];
+
+                $this->load->library('upload');
+
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('kknn_upload')) {
+                    $new_image = [
+                        'berkas' => $this->upload->data('file_name'),
+                    ];
+                    $data_in = array_merge($data_in, $new_image);
+                } else {
+                    echo $this->upload->dispay_errors();
+                }
+            }
+
             $input_data = $this->peserta_kkn_model->input_peserta_kkn($data_in);
             if ($input_data) {
                 $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Data berhasil disimpan...
@@ -155,6 +178,35 @@ class Peserta_kkn extends Member_Control
                 "ukuran_jaket" => $in["kknn_ukuran_jaket"],
                 //"berkas" => $upload_image, //$in["kknn_upload"],
             ];
+
+            $upload_image = $_FILES['kknn_upload']['name'];
+
+            if ($upload_image) {
+                $config = [
+                    'allowed_types' => 'jpg|jpeg|pdf',
+                    'max_size' => '1024',
+                    'file_name' => str_replace(' ', '_', 'kkn_' . $data_in['nim']),
+                    'upload_path' => './asset/uploads/berkas/pembayaran_kkn/',
+                ];
+
+                $this->load->library('upload');
+
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('kknn_upload')) {
+                    $berkas_lama = $in['berkas_lama'];
+                    if ($berkas_lama != '') {
+                        unlink(FCPATH . 'asset/uploads/berkas/pembayaran_kkn/' . $berkas_lama);
+                    }
+                    $new_image = [
+                        'berkas' => $this->upload->data('file_name'),
+                    ];
+                    $data_in = array_merge($data_in, $new_image);
+                } else {
+                    echo $this->upload->dispay_errors();
+                }
+            }
+
             $update_data = $this->peserta_kkn_model->update_peserta_kkn($data_in, $in['kknn_id_peserta']);
             if ($update_data) {
                 $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Data berhasil di-update...
@@ -168,12 +220,27 @@ class Peserta_kkn extends Member_Control
         }
     }
 
+    public function peserta_kkn_detail($id = null)
+    {
+        $data['title'] = "Detail Peserta Kkn";
+        $data['id_fakultas'] = $this->peserta_kkn_model->lookup_tbl_fakultas()->result();
+        $data['id_prodi'] = $this->peserta_kkn_model->lookup_tbl_prodi()->result();
+        $data['peserta_kkn'] = $this->peserta_kkn_model->get_by_id_peserta_kkn($id)->row();
+        $data['akun_kkn'] = $this->peserta_kkn_model->select_user_login($id)->row();
+        $data['provinsi'] = $this->main_model->selectProvinsi()->result();
+        $data['kota'] = $this->main_model->selectKota($data['peserta_kkn']->provinsi)->result();
+        $data['kecamatan'] = $this->main_model->selectKecamatan($data['peserta_kkn']->kota)->result();
+        $data['kelurahan'] = $this->main_model->selectKelurahan($data['peserta_kkn']->kecamatan)->result();
+        $this->load->view('peserta_kkn/peserta_kkn_detail', $data);
+    }
+
     public function peserta_kkn_dlt($id = '')
     {
         $in = $this->input->post(null, true);
         if (!$in && $id != '') {
             $hapus = $this->peserta_kkn_model->delete_peserta_kkn($id);
-            if ($hapus) {
+            $hapus_user = $this->peserta_kkn_model->delete_user_login($id);
+            if ($hapus && $hapus_user) {
                 $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Data berhasil dihapus...
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                 echo json_encode(array('msg' => $notif, 'status' => 'OK'));
@@ -201,7 +268,8 @@ class Peserta_kkn extends Member_Control
         ///jika action yang di klik adalah delete
         if ($action == "delete") {
             $hapus = $this->peserta_kkn_model->delete_peserta_kkn($newIdArray);
-            if ($hapus) {
+            $hapus_user = $this->peserta_kkn_model->delete_user_login($newIdArray);
+            if ($hapus && $hapus_user) {
                 $cMsg++;
             }
 

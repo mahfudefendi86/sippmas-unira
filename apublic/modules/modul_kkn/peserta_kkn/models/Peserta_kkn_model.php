@@ -72,6 +72,22 @@ class Peserta_kkn_model extends CI_Model
         return $this->db->delete($tabelku);
     }
 
+    public function delete_user_login($userid)
+    {
+        $tabelku = "_m_usr_login";
+        if (is_array($userid)) {
+            $this->db->where_in('userid', $userid);
+        } else {
+            $this->db->where('userid', $userid);
+        }
+        return $this->db->delete($tabelku);
+    }
+
+    public function select_user_login($userid)
+    {
+        return $this->db->get_where('_m_usr_login', ['userid' => $userid]);
+    }
+
     public function update_usr_mhs($data, $userid)
     {
         $this->db->where('userid', $userid);
