@@ -132,7 +132,8 @@ class Peneliti extends Member_Control {
 				}
 			}
 		}
-
+
+
 		function peneliti_upd($id=null){
 			$in=$this->input->post(null,true);
 			if(!$in){

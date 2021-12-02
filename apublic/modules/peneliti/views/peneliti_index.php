@@ -88,6 +88,7 @@ function update_link(n){
 setTimeout("reload_data()",1);
 
 function reload_data(url){
+	var seturl="";
 	var row=$("#slct_row").val();
 	var cari=$("#tb_filter").val();
 	var filter=$("#slct_filter").val();
@@ -107,6 +108,7 @@ function reload_data(url){
 		success   	: function(data){
 						$("#ajax_loader").fadeOut(100);
 						$("#dataview").html(data);
+						//console.log(data);
 		}
 	});///end of ajax
 }

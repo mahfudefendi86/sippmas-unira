@@ -100,7 +100,6 @@
 <div  id="link_pagination" class="float-md-right"><?php echo $links?></div>
 </div><!--End of Table Responsive-->
 
-
 <!-- END FABCYBOX -->
 <script type="text/javascript">
 $(function () {
@@ -195,7 +194,7 @@ function actionAll(act){
 			}
 		}); //end Of Ajax
 	}else{
-		UIkit.modal.alert("<h3>Maaf anda belum memilih Record...</h3>");
+		alert("<h3>Maaf anda belum memilih Record...</h3>");
 	}
 }
 $(document).ready(function(){
