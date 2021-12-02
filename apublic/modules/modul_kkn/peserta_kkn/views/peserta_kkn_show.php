@@ -63,7 +63,7 @@ if (count($peserta_kkn) > 0) {
 			<label class="custom-control-label" for="cb_<?php echo $dataview->id_peserta; ?>"> <?php echo $no; ?></label>
        </div>
 	</td>
-	<td>
+	<!-- <td>
 		<button type="button" class="edit btn btn-primary btn-sm" rel="<?php echo $dataview->id_peserta; ?>"  title="Edit Data"><i class="fa fa-pencil"></i></button>
 		<button type="button" class="delete btn btn-danger btn-sm" rel="<?php echo $dataview->id_peserta; ?>"  title="Delete Data"><i class="fa fa-trash"></i></button>
 		<?php if ($dataview->status == "NONAKTIF"): ?>
@@ -71,6 +71,17 @@ if (count($peserta_kkn) > 0) {
 		<?php elseif ($dataview->status == "AKTIF"): ?>
 		<button type="button" class="validasi btn btn-warning btn-sm" rel="set_nonaktif/<?php echo $dataview->id_peserta; ?>"  title="Nonaktifkan"><i class="fa fa-remove"></i></button>
 		<?php endif;?>
+	</td> -->
+
+	<td>
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Action
+		</button>
+		<div class="dropdown-menu">
+			<a class="edit dropdown-item" href="#" rel="<?php echo $dataview->id_peserta; ?>">Edit Data</a>
+			<a class="delete dropdown-item" href="#" rel="<?php echo $dataview->id_peserta; ?>">Delete Data</a>
+			<a class="detail dropdown-item" href="#" rel="<?php echo $dataview->id_peserta; ?>">Detail Data</a>
+		</div>
 	</td>
 
 	<td><span class="badge badge-<?=($dataview->status == "AKTIF") ? "success" : "danger";?> ?>"><?php echo $dataview->status; ?></span></td>
@@ -80,7 +91,7 @@ if (count($peserta_kkn) > 0) {
 	<td><?php echo $dataview->nim; ?></td>
 	<td><?php echo $dataview->jenis_kelamin; ?></td>
 	<td><?php echo $dataview->tempat_lahir; ?></td>
-	<td><?php echo $dataview->tgl_lahir; ?></td>
+	<td><?php echo tgl_indo($dataview->tgl_lahir); ?></td>
 	<td><?php echo $dataview->alamat_domisili; ?></td>
 	<td><?php echo nama_provinsi($dataview->provinsi); ?></td>
 	<td><?php echo nama_kota($dataview->kota); ?></td>
@@ -264,26 +275,44 @@ $(document).ready(function(){
 		}
 	});
 
-	$(".validasi").click(function(){
+	// $(".validasi").click(function(){
+	// 	var id=$(this).attr("rel");
+	// 	$.ajax({
+	// 		url       : "<?php echo site_url('validasi/peserta/kkn'); ?>/"+id,
+	// 		dataType  : "html",
+	// 		beforeSend: function(){
+	// 						$("#ajax_loader").fadeIn(100);
+	// 		},
+	// 		success   : function(data){
+	// 					obj = JSON.parse(data);
+	// 					if(obj.status=="OK"){
+	// 						$("#alert_info").html(obj.msg);
+	// 						reload_data_peserta_kkn();
+	// 					}else
+	// 					if(obj.status=="ERROR"){
+	// 						$("#alert_info").html(obj.msg);
+	// 					}
+	// 					$("#ajax_loader").fadeOut(100);
+	// 		}
+	// 	});
+	// });
+
+	$(".detail").click(function(){
 		var id=$(this).attr("rel");
 		$.ajax({
-			url       : "<?php echo site_url('validasi/peserta/kkn'); ?>/"+id,
-			dataType  : "html",
-			beforeSend: function(){
-							$("#ajax_loader").fadeIn(100);
-			},
-			success   : function(data){
-						obj = JSON.parse(data);
-						if(obj.status=="OK"){
-							$("#alert_info").html(obj.msg);
-							reload_data_peserta_kkn();
-						}else
-						if(obj.status=="ERROR"){
-							$("#alert_info").html(obj.msg);
-						}
-						$("#ajax_loader").fadeOut(100);
-			}
-		});
+				url       : "<?php echo site_url('peserta_kkn/peserta_kkn_detail'); ?>/"+id,
+				dataType  : "html",
+				beforeSend: function(){
+							  $("#ajax_loader").fadeIn(100);
+				},
+				success   : function(data){
+							$("#ajax_loader").fadeOut(100);
+							$("#dataview_modal_peserta_kkn").html(data);
+							$("#modalTitle_peserta_kkn").html("Detail Data Peserta Kkn");
+							$("#modalView_peserta_kkn").modal("show");
+				}
+			}); //end Of Ajax
+
 	});
 
 });

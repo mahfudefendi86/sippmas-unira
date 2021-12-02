@@ -2,7 +2,7 @@
 $is_edit = (isset($peserta_kkn));
 ?>
 <div class="card p-3 mb-3">
-	<form class="form-horizontal" role="form" name="formpeserta_kkn" id="peserta_kkn" action="<?php echo (!$is_edit) ? site_url("peserta_kkn/peserta_kkn_add") : site_url("peserta_kkn/peserta_kkn_upd") . '/' . $peserta_kkn->id_peserta; ?>" method="post" >
+	<form class="form-horizontal" role="form" name="formpeserta_kkn" id="peserta_kkn" action="<?php echo (!$is_edit) ? site_url("peserta_kkn/peserta_kkn_add") : site_url("peserta_kkn/peserta_kkn_upd") . '/' . $peserta_kkn->id_peserta; ?>" method="post" enctype="multipart/form-data">
     <input type="hidden" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->id_peserta; ?>" name="kknn_id_peserta" id="kknn_id_peserta" placeholder="Id Peserta"   />
     <div class="form-group row">
         <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_nama_lengkap">Nama Lengkap <span class="text-danger font-weight-bold">*</span></label>
@@ -363,6 +363,12 @@ if (isset($id_prodi)) {
     <div class="form-group row">
         <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_upload">Upload Bukti Pembayaran (jpg/pdf) <span class="text-danger font-weight-bold">*</span></label>
         <div class="col-sm-12 col-md-8 col-lg-9">
+            <input type="hidden" name="berkas_lama" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->berkas; ?>">
+            <?php if (isset($peserta_kkn->berkas) && $peserta_kkn->berkas != ""): ?>
+                <a id="berkas" class="iframe" href="<?=base_url('asset/uploads/berkas/pembayaran_kkn/' . $peserta_kkn->berkas);?>" ><img src="<?=base_url('asset/imgext/File-PDF-Acrobat-icon.png');?>"/> <?=$peserta_kkn->berkas;?></a>
+            <?php else: ?>
+                <p style="color: red">Berkas belum diupload</p>
+            <?php endif;?>
             <input type="file" class="form-control-file" name="kknn_upload" id="kknn_upload" accept=".jpg,.jpeg,.pdf">
             <label for="p3">(Ukuran file max 1MB)</label>
         </div>
@@ -412,30 +418,32 @@ if (isset($id_prodi)) {
 					kknn_bekerja: { required: '<div class="badge badge-danger badge-pill">Bekerja wajib diisi!</div>'  }
  			 },
 
-		  	submitHandler: function() {
-				var frm=$("#peserta_kkn");
-				$.ajax({
-					url       : frm.attr("action"),
-					type      : frm.attr("method"),
-					headers	  : {'X-Requested-With': 'XMLHttpRequest'},
-					dataType  : "html",
-					data      : frm.serialize(),
-					beforeSend: function(){
-							///Event sebelum proses data dikirim
-							$("#ajax_loader").fadeIn(100);
+		  	submitHandler: function(form) {
+                var formData = new FormData(form);
+                var frm=$("#peserta_kkn");
+                $.ajax({
+                    url         : frm.attr("action"),
+					type        : frm.attr("method"),
+                    data        : formData,
+                    cache       : false,
+                    contentType : false,
+                    processData : false,
+					beforeSend  : function(){
+                                ///Event sebelum proses data dikirim
+                                $("#ajax_loader").fadeIn(100);
 					},
-					success   : function(data){
-							///Event Jika data Berhasil diterima
-							obj = JSON.parse(data);
-							if(obj.status=="OK"){
-								$("#alert_info").html(obj.msg);
-								reload_data_peserta_kkn();
-							}else
-							if(obj.status=="ERROR"){
-								$("#alert_info").html(obj.msg);
-							}
-							$("#modalView_peserta_kkn").modal("hide");
-							$("#ajax_loader").fadeOut(100);
+					success     : function(data){
+                                ///Event Jika data Berhasil diterima
+                                obj = JSON.parse(data);
+                                if(obj.status=="OK"){
+                                    $("#alert_info").html(obj.msg);
+                                    reload_data_peserta_kkn();
+                                }else
+                                if(obj.status=="ERROR"){
+                                    $("#alert_info").html(obj.msg);
+                                }
+                                $("#modalView_peserta_kkn").modal("hide");
+                                $("#ajax_loader").fadeOut(100);
 					}
 				});///end Of Ajax
 		 }
@@ -668,3 +676,27 @@ $('.input-group.date').datepicker({
 </script>
 
 <!--  END DATA PICKER LOADING-->
+
+<!--  LOADING FANCYBOX-->
+<script src="<?php echo base_url(); ?>asset/addon/fancybox/jquery.fancybox.js"></script>
+<link href="<?php echo base_url(); ?>asset/addon/fancybox/jquery.fancybox.css" rel="stylesheet" />
+<script src="<?php echo base_url(); ?>theme/sbadmin/vendor/jquery-easing/jquery.easing.js"></script>
+<style>
+.fancybox-slide--iframe .fancybox-content {
+	width  : 80%;
+	height : 100%;
+	max-width  : 80%;
+	max-height : 100%;
+	margin: 0;
+}
+</style>
+<script>
+    $("a#berkas").fancybox({
+        'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600,
+		'speedOut'		:	200,
+		'overlayShow'	:	false,
+    });
+</script>
+<!-- END FABCYBOX -->
