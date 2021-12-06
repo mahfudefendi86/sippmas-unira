@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Sistem Informasi Penelitian dan Pengabdian Mayarakat (SIPPMas) UNIRA Malang">
   <meta name="author" content="LPPM Unira Malang">
+  <meta name='robots' content='noindex'>
   <link rel="icon" href="<?php echo base_url();?>asset/images/favicon.jpg">
   <title><?php echo isset($title)?$title:"LPPM";?></title>
    <!-- Bootstrap core CSS-->
@@ -17,8 +18,9 @@
 <!-- Custom styles-->
   <link media="screen" type="text/css" href="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/css/mystyle.css" rel="stylesheet">
   <link media="screen" type="text/css" href="<?php echo base_url();?>asset/css/berita.css" rel="stylesheet">
-
   <script src="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/jquery/jquery.min.js"></script>
+  
+ 
   <style>
  .loader_anim {
      display: none;
@@ -76,6 +78,7 @@
   <script src="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/jquery-easing/jquery.easing.min.js"></script>
   <!-- Custom scripts for all pages-->
   <script src="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/js/sb-admin.min.js"></script>
+  
   <script>
     $(document).ready(function() {
         $("body").tooltip({ selector: '[data-toggle=tooltip]', container: 'body', delay: {"show": 100, "hide": 100 } });
