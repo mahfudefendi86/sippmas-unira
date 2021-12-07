@@ -7,37 +7,37 @@ $is_edit = (isset($peserta_kkn));
     </div>
 	<form class="form-horizontal" role="form" name="formpeserta_kkn" id="peserta_kkn" action="<?php echo site_url('main/save_kkn'); ?>" method="post" enctype="multipart/form-data">
     <input type="hidden" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->id_peserta; ?>" name="kknn_id_peserta" id="kknn_id_peserta" placeholder="Id Peserta"   />
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_nama_lengkap">Nama Lengkap <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_nama_lengkap">Nama Lengkap <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="text" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->nama_mhs; ?>" name="kknn_nama_lengkap" id="kknn_nama_lengkap" placeholder="Nama Lengkap"   />
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_email">Email  <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_email">Email  <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="text" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->email; ?>" name="kknn_email" id="kknn_email" placeholder="Email"   />
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_nomer_hp">Nomer HP  <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_nomer_hp">Nomer HP  <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="text" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->hp; ?>" name="kknn_nomer_hp" id="kknn_nomer_hp" placeholder="Nomer HP"   />
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_nim">NIM  <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_nim">NIM  <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="text" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->nim; ?>" name="kknn_nim" id="kknn_nim" placeholder="NIM"   />
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_jenis_kelamin">Jenis Kelamin <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_jenis_kelamin">Jenis Kelamin <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="custom-control custom-radio">
                     <input type="radio" class="custom-control-input" value="L" name="kknn_jenis_kelamin" id="kknn_jenis_kelamin_L" placeholder="Jenis Kelamin"  />
                     <label class="custom-control-label" for="kknn_jenis_kelamin_L">Laki-laki</label>
@@ -49,16 +49,16 @@ $is_edit = (isset($peserta_kkn));
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_tempat_lahir">Tempat Lahir <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_tempat_lahir">Tempat Lahir <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="text" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->tempat_lahir; ?>" name="kknn_tempat_lahir" id="kknn_tempat_lahir" placeholder="Tempat Lahir"   />
         </div>
     </div>
 
-    <div class="form-group row">
-		<label class="col-sm-12 col-md-3" for="kknn_tanggal_lahir">Tanggal Lahir <span class="text-danger font-weight-bold">*</span></label>
-		<div class="col-sm-12 col-md-9">
+    <div class="form-group row mb-5">
+		<label class="col-sm-12 col-md-12" for="kknn_tanggal_lahir">Tanggal Lahir <span class="text-danger font-weight-bold">*</span></label>
+		<div class="col-sm-12 col-md-12">
 			<div class="input-group date">
 				<div class="input-group-addon input-group-prepend">
 				    	<span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
@@ -68,31 +68,31 @@ $is_edit = (isset($peserta_kkn));
 		</div>
 	</div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_usia">Usia <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_usia">Usia <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="number" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->usia; ?>" name="kknn_usia" id="kknn_usia" placeholder="Usia"   />
         </div>
     </div>
 
-    <div class="form-group row">
-		<label class="col-sm-12 col-md-3" for="kknn_alamat_domisili">Alamat Domisili <span class="text-danger font-weight-bold">*</span></label>
-		<div class="col-sm-12 col-md-9">
+    <div class="form-group row mb-5">
+		<label class="col-sm-12 col-md-12" for="kknn_alamat_domisili">Alamat Domisili <span class="text-danger font-weight-bold">*</span></label>
+		<div class="col-sm-12 col-md-12">
 			<textarea name="kknn_alamat_domisili" id="kknn_alamat_domisili" class="form-control" placeholder="Alamat Domisili" ><?php echo (!$is_edit) ? '' : $peserta_kkn->alamat_domisili; ?></textarea>
 		</div>
 	</div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_provinsi">Provinsi <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_provinsi">Provinsi <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <select class="form-control" name="kknn_provinsi" id="kknn_provinsi" placeholder="Provinsi">
                 <option value="">= Pilih Provinsi =</option>
                 <?php
 foreach ($provinsi as $prop) {
     if ($prop->id_prov == ((!$is_edit) ? '' : $peserta_kkn->provinsi)) {
-        echo '<option value="' . $prop->id_prov . '" selected>' . $prop->nama_prov . '</option>';
+        echo '<option value="' . $prop->id . '" selected>' . $prop->name . '</option>';
     } else {
-        echo '<option value="' . $prop->id_prov . '">' . $prop->nama_prov . '</option>';
+        echo '<option value="' . $prop->id . '">' . $prop->name . '</option>';
     }
 }
 ?>
@@ -100,17 +100,17 @@ foreach ($provinsi as $prop) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_kota">Kota/Kabupaten <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_kota">Kota/Kabupaten <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <select class="form-control" name="kknn_kota" id="kknn_kota" placeholder="Kota/Kabupaten">
                 <option value="">= Pilih Kota/Kabupaten =</option>
                 <?php
 foreach ($kota as $kot) {
     if ($kot->id_kota == ((!$is_edit) ? '' : $peserta_kkn->kota)) {
-        echo '<option value="' . $kot->id_kota . '" selected>' . $kot->nama_kota . '</option>';
+        echo '<option value="' . $kot->id . '" selected>' . $kot->name . '</option>';
     } else {
-        echo '<option value="' . $kot->id_kota . '">' . $kot->nama_kota . '</option>';
+        echo '<option value="' . $kot->id . '">' . $kot->name . '</option>';
     }
 }
 ?>
@@ -118,17 +118,17 @@ foreach ($kota as $kot) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_kecamatan">Kecamatan <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_kecamatan">Kecamatan <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <select class="form-control" name="kknn_kecamatan" id="kknn_kecamatan" placeholder="Kecamatan">
                 <option value="">= Pilih Kecamatan =</option>
                 <?php
 foreach ($kecamatan as $kec) {
     if ($kec->id_kec == ((!$is_edit) ? '' : $peserta_kkn->kecamatan)) {
-        echo '<option value="' . $kec->id_kec . '" selected>' . $kec->nama_kec . '</option>';
+        echo '<option value="' . $kec->id . '" selected>' . $kec->name . '</option>';
     } else {
-        echo '<option value="' . $kec->id_kec . '">' . $kec->nama_kec . '</option>';
+        echo '<option value="' . $kec->id . '">' . $kec->name . '</option>';
     }
 }
 ?>
@@ -136,17 +136,17 @@ foreach ($kecamatan as $kec) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_kelurahan">Kelurahan/Desa <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_kelurahan">Kelurahan/Desa <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <select class="form-control" name="kknn_kelurahan" id="kknn_kelurahan" placeholder="Kelurahan/Desa">
                 <option value="">= Pilih Kelurahan =</option>
                 <?php
 foreach ($kelurahan as $kel) {
     if ($kel->id_kel == ((!$is_edit) ? '' : $peserta_kkn->kelurahan)) {
-        echo '<option value="' . $kel->id_kel . '" selected>' . $kel->nama_kel . '</option>';
+        echo '<option value="' . $kel->id . '" selected>' . $kel->name . '</option>';
     } else {
-        echo '<option value="' . $kel->id_kel . '">' . $kel->nama_kel . '</option>';
+        echo '<option value="' . $kel->id . '">' . $kel->name . '</option>';
     }
 }
 ?>
@@ -154,9 +154,9 @@ foreach ($kelurahan as $kel) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_fakultas">Fakultas <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_fakultas">Fakultas <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <select name="kknn_fakultas" id="kknn_fakultas" class="custom-select" >
             <option value="">== Pilih Fakultas ==</option>
                     <?php
@@ -175,9 +175,9 @@ if (isset($id_fakultas)) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_program_pendidikan">Program Pendidikan <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_program_pendidikan">Program Pendidikan <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <select name="kknn_program_pendidikan" id="kknn_program_pendidikan" class="custom-select" >
             <option value="">== Pilih Program Pendidikan ==</option>
                     <?php
@@ -196,9 +196,9 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_kondisi_kesehatan">Kondisi Kesehatan <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_kondisi_kesehatan">Kondisi Kesehatan <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" value="<?php echo (!$is_edit) ? 'baik' : $peserta_kkn->kesehatan; ?>" name="kknn_kondisi_kesehatan" id="kknn_kondisi_kesehatan_b" placeholder="Kondisi Kesehatan"  />
                 <label class="custom-control-label" for="kknn_kondisi_kesehatan_b">Baik</label>
@@ -210,9 +210,9 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_penyakit">Penyakit <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_penyakit">Penyakit <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" value="<?php echo (!$is_edit) ? 'memiliki' : $peserta_kkn->penyakit_diderita; ?>" name="kknn_penyakit" id="kknn_penyakit_m" placeholder="Penyakit"  />
                 <label class="custom-control-label" for="kknn_penyakit_m">Memiliki</label>
@@ -224,9 +224,9 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_memiliki_keluarga">Memiliki Suami/Istri/Anak <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_memiliki_keluarga">Memiliki Suami/Istri/Anak <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="custom-control custom-checkbox" id="suami">
                 <input type="checkbox" class="custom-control-input" value="<?php echo (!$is_edit) ? 'Suami' : $peserta_kkn->keluarga; ?>" name="kknn_memiliki_keluarga[]" id="kknn_memiliki_keluarga_s" placeholder="Memiliki Keluarga"  />
                 <label class="custom-control-label" for="kknn_memiliki_keluarga_s">Suami</label>
@@ -246,9 +246,9 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
-    <div class="form-group row" id="hamil">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_hamil">Hamil</label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5" id="hamil">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_hamil">Hamil</label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="custom-control custom-radio">
                     <input type="radio" class="custom-control-input" value="Y" name="kknn_hamil" id="kknn_hamil_Y" placeholder="Hamil"  />
                     <label class="custom-control-label" for="kknn_hamil_Y">Ya</label>
@@ -260,9 +260,9 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_bekerja">Sedang Bekerja <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_bekerja">Sedang Bekerja <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" value="Y" name="kknn_bekerja" id="kknn_bekerja_Y" placeholder="Bekerja"  />
                 <label class="custom-control-label" for="kknn_bekerja_Y">Ya</label>
@@ -274,9 +274,9 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
-    <div class="form-group row" id="jenis_pekerjaan">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_pekerjaan">Jenis Pekerjaan</label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5" id="jenis_pekerjaan">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_pekerjaan">Jenis Pekerjaan</label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" value="guru" name="kknn_pekerjaan" id="kknn_pekerjaan_G" placeholder="Jenis Pekerjaan"  />
                 <label class="custom-control-label" for="kknn_pekerjaan_G">Guru</label>
@@ -306,9 +306,9 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
-    <div class="form-group row" id="status_pekerjaan">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_status_pekerjaan">Status Pekerjaan</label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5" id="status_pekerjaan">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_status_pekerjaan">Status Pekerjaan</label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" value="fulltime" name="kknn_status_pekerjaan" id="kknn_status_pekerjaan_FT" placeholder="Status Pekerjaan"  />
                 <label class="custom-control-label" for="kknn_status_pekerjaan_FT">Full Time</label>
@@ -330,16 +330,16 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
-    <div class="form-group row" id="alamat_kerja">
-		<label class="col-sm-12 col-md-3" for="kknn_alamat_kerja">Alamat Tempat Bekerja</label>
-		<div class="col-sm-12 col-md-9">
+    <div class="form-group row mb-5" id="alamat_kerja">
+		<label class="col-sm-12 col-md-12" for="kknn_alamat_kerja">Alamat Tempat Bekerja</label>
+		<div class="col-sm-12 col-md-12">
 			<textarea name="kknn_alamat_kerja" id="kknn_alamat_kerja" class="form-control" placeholder="Alamat Kerja" ><?php echo (!$is_edit) ? '' : $peserta_kkn->alamat_kerja; ?></textarea>
 		</div>
 	</div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_ukuran_jaket">Ukuran Jaket <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_ukuran_jaket">Ukuran Jaket <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" value="<?php echo (!$is_edit) ? 'S' : $peserta_kkn->ukuran_jaket; ?>" name="kknn_ukuran_jaket" id="kknn_ukuran_jaket_S" placeholder="Ukuran Jaket"  />
                 <label class="custom-control-label" for="kknn_ukuran_jaket_S">S</label>
@@ -363,9 +363,9 @@ if (isset($id_prodi)) {
         </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="kknn_upload">Upload Bukti Pembayaran (jpg/pdf) <span class="text-danger font-weight-bold">*</span></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="kknn_upload">Upload Bukti Pembayaran (jpg/pdf) <span class="text-danger font-weight-bold">*</span></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="file" class="form-control-file" name="kknn_upload" id="kknn_upload" accept=".jpg,.jpeg,.pdf">
             <label for="p3">(Ukuran file max 1MB)</label>
         </div>
@@ -373,9 +373,9 @@ if (isset($id_prodi)) {
 
     <hr>
 
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-4 col-lg-3" for="security_code"></label>
-        <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="form-group row mb-5">
+        <label class="col-sm-12 col-md-12 col-lg-12" for="security_code"></label>
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <p><?php echo $image; ?></p>
             <label for="p3">Masukan Kode Captcha Diatas</label>
             <input type="text" name="security_code" id="security_code"  value="" class="inputan form-control" placeholder="Kode Captcha" />
@@ -384,7 +384,7 @@ if (isset($id_prodi)) {
     <br/>
 
     <hr/>
-		<div class="form-group row">
+		<div class="form-group row mb-5">
 			<div class="col-sm-12 col-md-12">
 				<div class="row justify-content-md-center">
 					<div class="col-md-4 col-lg-4 col-sm-12 m-1">
@@ -409,13 +409,13 @@ if (isset($id_prodi)) {
     wrapper: "span",
     rules:{
             kknn_nama_lengkap: { required: true },
-            kknn_email: { required: true },
+            kknn_email: { required: true, email:true },
             kknn_nomer_hp: { required: true },
-            kknn_nim: { required: true },
+            kknn_nim: { required: true , number :true},
             kknn_jenis_kelamin: { required: true },
             kknn_tempat_lahir: { required: true },
             kknn_tanggal_lahir: { required: true },
-            kknn_usia: { required: true },
+            kknn_usia: { required: true , number:true},
             kknn_alamat_domisili: { required: true },
             kknn_provinsi: { required: true },
             kknn_kota: { required: true },
@@ -431,30 +431,31 @@ if (isset($id_prodi)) {
             kknn_upload: { required: true }
         },
     messages:{
-            kknn_nama_lengkap: { required: 'Nama Lengkap wajib diisi' },
-            kknn_email: { required: 'Email wajib diisi' },
-            kknn_nomer_hp: { required: 'Nomor HP wajib diisi' },
-            kknn_nim: { required: 'NIM wajib diisi' },
-            kknn_jenis_kelamin: { required: 'Jenis Kelamin wajib dipilih' },
-            kknn_tempat_lahir: { required: 'Tempat Lahir wajib diisi' },
-            kknn_tanggal_lahir: { required: 'Tanggal Lahir wajib diisi' },
-            kknn_usia: { required: 'Usia wajib diisi' },
-            kknn_alamat_domisili: { required: 'Alamat Domisili wajib diisi' },
-            kknn_provinsi: { required: 'Provinsi wajib dipilih' },
-            kknn_kota: { required: 'Kota wajib dipilih' },
-            kknn_kecamatan: { required: 'Kecamatan wajib dipilih' },
-            kknn_kelurahan: { required: 'Kelurahan wajib dipilih' },
-            kknn_fakultas: { required: 'Fakultas wajib dipilih' },
-            kknn_program_pendidikan: { required: 'Prodi wajib dipilih' },
-            kknn_kondisi_kesehatan: { required: 'Kondisi Kesehatan wajib dipilih' },
-            kknn_penyakit: { required: 'Penyakit wajib dipilih' },
-            "kknn_memiliki_keluarga[]": { required: 'Memiliki Suami/Istri/Anak wajib diceklis' },
-            kknn_bekerja: { required: 'Sedang Bekerja wajib dipilih' },
-            kknn_ukuran_jaket: { required: 'Ukuran Jaket wajib dipilih' },
-            kknn_upload: { required: 'Berkas Bukti Pembayaran wajib diupload' }
+            kknn_nama_lengkap: { required: '<div class="badge badge-danger badge-pill">Nama Lengkap wajib diisi</div>' },
+            kknn_email: { required: '<div class="badge badge-danger badge-pill">Email wajib diisi</div>', email: '<div class="badge badge-danger badge-pill">Format email tidak valid</div>' },
+            kknn_nomer_hp: { required: '<div class="badge badge-danger badge-pill">Nomor HP wajib diisi</div>' },
+            kknn_nim: { required: '<div class="badge badge-danger badge-pill">NIM wajib diisi</div>' },
+            kknn_jenis_kelamin: { required: '<div style="position:absolute; bottom:-45px;left:0;" class="badge badge-danger badge-pill">Jenis Kelamin wajib dipilih</div>' },
+            kknn_tempat_lahir: { required: '<div class="badge badge-danger badge-pill">Tempat Lahir wajib diisi</div>' },
+            kknn_tanggal_lahir: { required: '<div style="position:absolute; bottom:-20px;left:0;" class="badge badge-danger badge-pill">Tanggal Lahir wajib diisi</div>' },
+            kknn_usia: { required: '<div class="badge badge-danger badge-pill">Usia wajib diisi</div>' },
+            kknn_alamat_domisili: { required: '<div class="badge badge-danger badge-pill">Alamat Domisili wajib diisi</div>' },
+            kknn_provinsi: { required: '<div class="badge badge-danger badge-pill">Provinsi wajib dipilih</div>' },
+            kknn_kota: { required: '<div class="badge badge-danger badge-pill">Kota wajib dipilih</div>' },
+            kknn_kecamatan: { required: '<div class="badge badge-danger badge-pill">Kecamatan wajib dipilih</div>' },
+            kknn_kelurahan: { required: '<div class="badge badge-danger badge-pill">Kelurahan wajib dipilih</div>' },
+            kknn_fakultas: { required: '<div class="badge badge-danger badge-pill">Fakultas wajib dipilih</div>' },
+            kknn_program_pendidikan: { required: '<div class="badge badge-danger badge-pill">Prodi wajib dipilih</div>' },
+            kknn_kondisi_kesehatan: { required: '<div style="position:absolute; bottom:-45px;left:0;" class="badge badge-danger badge-pill">Kondisi Kesehatan wajib dipilih</div>' },
+            kknn_penyakit: { required: '<div style="position:absolute; bottom:-45px;left:0;" class="badge badge-danger badge-pill">Penyakit wajib dipilih</div>' },
+            "kknn_memiliki_keluarga[]": { required: '<div style="position:absolute; bottom:-45px;left:0;" class="badge badge-danger badge-pill">Memiliki Suami/Istri/Anak wajib diceklis</div>' },
+            kknn_bekerja: { required: '<div style="position:absolute; bottom:-45px;left:0;" class="badge badge-danger badge-pill">Sedang Bekerja wajib dipilih</div>' },
+            kknn_ukuran_jaket: { required: '<div style="position:absolute; bottom:-120px;left:0;" class="badge badge-danger badge-pill">Ukuran Jaket wajib dipilih</div>' },
+            kknn_upload: { required: '<div class="badge badge-danger badge-pill">Berkas Bukti Pembayaran wajib diupload</div>' }
         },
 
     submitHandler: function(form) {
+        //return true;
         var formData = new FormData(form);
         $.ajax({
                 type:'POST',
@@ -527,7 +528,7 @@ if (isset($id_prodi)) {
                             var html = '<option value="">Pilih Kota/Kabupaten</option>';
                             var i;
                             for(i=0; i<data.length; i++){
-                                html += '<option value='+data[i].id_kota+'>'+data[i].nama_kota+'</option>';
+                                html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
                             }
                             $('#kknn_kota').html(html);
                         }
@@ -546,7 +547,7 @@ if (isset($id_prodi)) {
                             var html = '<option value="">Pilih Kecamatan</option>';
                             var i;
                             for(i=0; i<data.length; i++){
-                                html += '<option value='+data[i].id_kec+'>'+data[i].nama_kec+'</option>';
+                                html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
                             }
                             $('#kknn_kecamatan').html(html);
                         }
@@ -565,7 +566,7 @@ if (isset($id_prodi)) {
                             var html = '<option value="">Pilih Desa/Kelurahan</option>';
                             var i;
                             for(i=0; i<data.length; i++){
-                                html += '<option value='+data[i].id_kel+'>'+data[i].nama_kel+'</option>';
+                                html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
                             }
                             $('#kknn_kelurahan').html(html);
                         }

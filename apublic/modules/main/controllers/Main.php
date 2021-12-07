@@ -241,11 +241,15 @@ class Main extends CI_Controller
         $captcha = $in['security_code'];
 
         if ($upload_image) {
+            $path_dir_file='file_uploaded/pembayaran_kkn/';
+			if(!file_exists($path_dir_file)){mkdir($path_dir_file,0777,true);}
+
             $config = [
                 'allowed_types' => 'jpg|jpeg|pdf',
                 'max_size' => '1024',
                 'file_name' => str_replace(' ', '_', 'kkn_' . $data_in['nim']),
-                'upload_path' => './asset/uploads/berkas/pembayaran_kkn/',
+                'upload_path' => $path_dir_file,
+                'overwrite'=>true
             ];
 
             $this->load->library('upload');
@@ -258,7 +262,7 @@ class Main extends CI_Controller
                 ];
                 $data_in = array_merge($data_in, $new_image);
             } else {
-                echo $this->upload->dispay_errors();
+                echo $this->upload->display_errors();
             }
         }
 
@@ -360,7 +364,7 @@ class Main extends CI_Controller
         }
     }
 
-    private function _create_captcha()
+    public function _create_captcha()
     {
         // we will first load the helper. We will not be using autoload because we only need it here
         $this->load->helper('captcha');

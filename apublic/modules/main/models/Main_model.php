@@ -25,29 +25,29 @@ class Main_model extends CI_Model
 
     public function selectProvinsi()
     {
-        $this->db->order_by('nama_prov', 'ASC');
-        $query = $this->db->get('provinsi');
+        $this->db->order_by('name', 'ASC');
+        $query = $this->db->get('_m_provinsi');
         return $query;
     }
 
     public function selectKota($id_prov)
     {
-        $this->db->order_by('nama_kota', 'ASC');
-        $query = $this->db->get_where('kota', array('id_prov' => $id_prov));
+        $this->db->order_by('name', 'ASC');
+        $query = $this->db->get_where('_m_kotakab', array('province_id' => $id_prov));
         return $query;
     }
 
     public function selectKecamatan($id_kota)
     {
-        $this->db->order_by('nama_kec', 'ASC');
-        $query = $this->db->get_where('kecamatan', array('id_kota' => $id_kota));
+        $this->db->order_by('name', 'ASC');
+        $query = $this->db->get_where('_m_kecamatan', array('regency_id' => $id_kota));
         return $query;
     }
 
     public function selectKelurahan($id_kec)
     {
-        $this->db->order_by('nama_kel', 'ASC');
-        $query = $this->db->get_where('kelurahan', array('id_kec' => $id_kec));
+        $this->db->order_by('name', 'ASC');
+        $query = $this->db->get_where('_m_desa', array('district_id' => $id_kec));
         return $query;
     }
 

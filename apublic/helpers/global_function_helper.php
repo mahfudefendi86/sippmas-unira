@@ -207,8 +207,8 @@ if (!function_exists('nama_provinsi')) {
     function nama_provinsi($id_provinsi)
     {
         $CI = &get_instance();
-        $provinsi = $CI->db->get_where('provinsi', ['id_prov' => $id_provinsi])->row_array();
-        $nama_provinsi = $provinsi['nama_prov'];
+        $provinsi = $CI->db->get_where('_m_provinsi', ['id' => $id_provinsi])->row_array();
+        $nama_provinsi = $provinsi['name'];
 
         return $nama_provinsi;
     }
@@ -218,8 +218,8 @@ if (!function_exists('nama_kota')) {
     function nama_kota($id_kota)
     {
         $CI = &get_instance();
-        $kota = $CI->db->get_where('kota', ['id_kota' => $id_kota])->row_array();
-        $nama_kota = $kota['nama_kota'];
+        $kota = $CI->db->get_where('_m_kotakab', ['id' => $id_kota])->row_array();
+        $nama_kota = $kota['name'];
 
         return $nama_kota;
     }
@@ -229,8 +229,8 @@ if (!function_exists('nama_kecamatan')) {
     function nama_kecamatan($id_kecamatan)
     {
         $CI = &get_instance();
-        $kecamatan = $CI->db->get_where('kecamatan', ['id_kec' => $id_kecamatan])->row_array();
-        $nama_kecamatan = $kecamatan['nama_kec'];
+        $kecamatan = $CI->db->get_where('_m_kecamatan', ['id' => $id_kecamatan])->row_array();
+        $nama_kecamatan = $kecamatan['name'];
 
         return $nama_kecamatan;
     }
@@ -240,8 +240,8 @@ if (!function_exists('nama_kelurahan')) {
     function nama_kelurahan($id_kelurahan)
     {
         $CI = &get_instance();
-        $kelurahan = $CI->db->get_where('kelurahan', ['id_kel' => $id_kelurahan])->row_array();
-        $nama_kelurahan = $kelurahan['nama_kel'];
+        $kelurahan = $CI->db->get_where('_m_desa', ['id' => $id_kelurahan])->row_array();
+        $nama_kelurahan = $kelurahan['nama'];
 
         return $nama_kelurahan;
     }
