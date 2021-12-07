@@ -146,3 +146,4 @@ function reload_data(url){
 	});
 
 </script>
+

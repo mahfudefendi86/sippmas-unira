@@ -101,11 +101,7 @@
 </div><!--End of Table Responsive-->
 
 <!-- END FABCYBOX -->
-<script type="text/javascript">
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-  })
-</script>
+
 <script>
 	var item_global=new Array();
 
