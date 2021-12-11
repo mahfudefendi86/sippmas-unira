@@ -3,14 +3,16 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Kelompok_kkn extends CI_Controller
+class Tahun_ajaran extends Member_Control
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper(array('url'));
-        $this->load->model(array('kelompok_kkn_model'));
+        $this->load->helper(array('url', 'format_tanggal'));
+        $this->load->model(array('tahun_ajaran_model'));
+        active_link("master");
+        active_sublink("tahun_ajaran");
     }
 
     public function index($s = 0)
@@ -20,13 +22,13 @@ class Kelompok_kkn extends CI_Controller
 
     public function show($s = 0)
     {
-        $data['title'] = "Daftar Kelompok KKN";
+        $data['title'] = "Daftar Tahun Ajaran";
         $data['s'] = $s;
-        $data['op_search'] = array("C.nama_tempat" => "Tempat KKN", "A.nama_kelompok" => "Nama Kelompok KKN");
-        $this->template->mainview('kelompok_kkn/kelompok_kkn_index', $data);
+        $data['op_search'] = array("A.nama_kkn" => "Nama KKN");
+        $this->template->kknview('tahun_ajaran/tahun_ajaran_index', $data);
     }
 
-    public function kelompok_kkn_show($st = null, $option = "")
+    public function tahun_ajaran_show($st = null, $option = "")
     {
         $in = $this->input->post(null, true);
         $row = 10;
@@ -42,23 +44,23 @@ class Kelompok_kkn extends CI_Controller
                 $option .= $in['filter'] . " LIKE '%" . $in['cari'] . "%' ";
             } else {
                 ($option == "") ? $option .= " WHERE " : $option .= " AND ";
-                $option .= " ( C.nama_tempat LIKE '%" . $in['cari'] . "%'  OR A.nama_kelompok LIKE '%" . $in['cari'] . "%' ) ";
+                $option .= " ( A.nama_kkn LIKE '%" . $in['cari'] . "%' ) ";
             }
         }
 
         /*** FILTER ORDER DATA ****/
         if (isset($in['sortby']) && $in['sortby'] != "") {
-            $sort_field = array("a" => "A.id_tempat", "b" => "A.nama_kelompok", "c" => "A.ketua_kelompok");
+            $sort_field = array("a" => "A.nama_kkn", "b" => "A.tgl_mulai", "c" => "A.tgl_selesai", "d" => "A.keterangan");
             $option .= " ORDER BY " . $sort_field[$in['sortby']] . " " . $in['sort'];
         }
 
         /**** pengaturan pagination ***/
         $this->load->library('pagination');
-        $config['base_url'] = site_url('kelompok_kkn/kelompok_kkn_show');
-        $config['first_url'] = site_url('kelompok_kkn/kelompok_kkn_show/0');
+        $config['base_url'] = site_url('tahun_ajaran/tahun_ajaran_show');
+        $config['first_url'] = site_url('tahun_ajaran/tahun_ajaran_show/0');
         $config['uri_segment'] = 3; ///Untuk menentukan jumlah record yang tampil
         $config['per_page'] = $row;
-        $config['total_rows'] = $this->kelompok_kkn_model->show_data_kelompok_kkn($option)->num_rows();
+        $config['total_rows'] = $this->tahun_ajaran_model->show_data_tahun_ajaran($option)->num_rows();
 
         /*** inisialisasi config pagination ***/
         $this->pagination->initialize($config);
@@ -66,26 +68,25 @@ class Kelompok_kkn extends CI_Controller
         $data['start'] = $start;
         $data['end'] = $start + $config['per_page'];
         $data['total_rows'] = $config['total_rows'];
-        $data['kelompok_kkn'] = $this->kelompok_kkn_model->show_data_kelompok_kkn($option, $start, $config['per_page'])->result();
-        $this->load->view('kelompok_kkn/kelompok_kkn_show', $data);
+        $data['tahun_ajaran'] = $this->tahun_ajaran_model->show_data_tahun_ajaran($option, $start, $config['per_page'])->result();
+        $this->load->view('tahun_ajaran/tahun_ajaran_show', $data);
     }
 
-    public function kelompok_kkn_add()
+    public function tahun_ajaran_add()
     {
         $in = $this->input->post(null, true);
         if (!$in) {
             $data['title'] = "This Your Title";
-            $data['id_tempat'] = $this->kelompok_kkn_model->lookup_kkn_m_tempat()->result();
-            $data['ketua_kelompok'] = $this->kelompok_kkn_model->lookup__m_usr_login()->result();
-            $this->load->view('kelompok_kkn/kelompok_kkn_form', $data);
+            $this->load->view('tahun_ajaran/tahun_ajaran_form', $data);
         } else {
             $data_in = array(
-                'id_kelompok' => random_id(), //$in['klp__id_kelompok_kkn'],
-                'id_tempat' => $in['klp__tempat_kkn'],
-                'nama_kelompok' => $in['klp__nama_kelompok_kkn'],
-                'ketua_kelompok' => $in['klp__nama_ketua_kelompok'],
+                'id_thn_kkn' => random_id(), //$in['th__id_tahun_ajaran_kkn'],
+                'nama_kkn' => $in['th__nama_kkn'],
+                'tgl_mulai' => $in['th__tanggal_mulai'],
+                'tgl_selesai' => $in['th__tanggal_selesai'],
+                'keterangan' => $in['th__keterangan'],
             );
-            $input_data = $this->kelompok_kkn_model->input_kelompok_kkn($data_in);
+            $input_data = $this->tahun_ajaran_model->input_tahun_ajaran($data_in);
             if ($input_data) {
                 $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Data berhasil disimpan...
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
@@ -98,22 +99,21 @@ class Kelompok_kkn extends CI_Controller
         }
     }
 
-    public function kelompok_kkn_upd($id = null)
+    public function tahun_ajaran_upd($id = null)
     {
         $in = $this->input->post(null, true);
         if (!$in) {
             $data['title'] = "This Your Title";
-            $data['id_tempat'] = $this->kelompok_kkn_model->lookup_kkn_m_tempat()->result();
-            $data['ketua_kelompok'] = $this->kelompok_kkn_model->lookup__m_usr_login()->result();
-            $data['kelompok_kkn'] = $this->kelompok_kkn_model->get_by_id_kelompok_kkn($id)->row();
-            $this->load->view('kelompok_kkn/kelompok_kkn_form', $data);
+            $data['tahun_ajaran'] = $this->tahun_ajaran_model->get_by_id_tahun_ajaran($id)->row();
+            $this->load->view('tahun_ajaran/tahun_ajaran_form', $data);
         } else {
             $data_in = array(
-                'id_tempat' => $in['klp__tempat_kkn'],
-                'nama_kelompok' => $in['klp__nama_kelompok_kkn'],
-                'ketua_kelompok' => $in['klp__nama_ketua_kelompok'],
+                'nama_kkn' => $in['th__nama_kkn'],
+                'tgl_mulai' => $in['th__tanggal_mulai'],
+                'tgl_selesai' => $in['th__tanggal_selesai'],
+                'keterangan' => $in['th__keterangan'],
             );
-            $update_data = $this->kelompok_kkn_model->update_kelompok_kkn($data_in, $in['klp__id_kelompok_kkn']);
+            $update_data = $this->tahun_ajaran_model->update_tahun_ajaran($data_in, $in['th__id_tahun_ajaran_kkn']);
             if ($update_data) {
                 $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Data berhasil di-update...
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
@@ -126,11 +126,11 @@ class Kelompok_kkn extends CI_Controller
         }
     }
 
-    public function kelompok_kkn_dlt($id = '')
+    public function tahun_ajaran_dlt($id = '')
     {
         $in = $this->input->post(null, true);
         if (!$in && $id != '') {
-            $hapus = $this->kelompok_kkn_model->delete_kelompok_kkn($id);
+            $hapus = $this->tahun_ajaran_model->delete_tahun_ajaran($id);
             if ($hapus) {
                 $notif = '<div class="alert alert-success alert-dismissable" onclick="$(this).fadeOut(300);"><i class="fa fa-info-circle"></i> Data berhasil dihapus...
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
@@ -143,7 +143,7 @@ class Kelompok_kkn extends CI_Controller
         }
     }
 
-    public function kelompok_kkn_actionAll($action = "")
+    public function tahun_ajaran_actionAll($action = "")
     {
         $cMsg = 0;
         $in = $this->input->post(null, true);
@@ -156,7 +156,7 @@ class Kelompok_kkn extends CI_Controller
         ///jika action yang di klik adalah delete
         if ($action == "delete") {
             for ($x = 0; $x < $cArray; $x++) {
-                $hapus = $this->kelompok_kkn_model->delete_kelompok_kkn($idArray[$x]);
+                $hapus = $this->tahun_ajaran_model->delete_tahun_ajaran($idArray[$x]);
                 if ($hapus) {
                     $cMsg++;
                 }

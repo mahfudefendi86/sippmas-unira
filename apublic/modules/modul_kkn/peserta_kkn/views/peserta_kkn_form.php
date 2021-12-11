@@ -86,10 +86,10 @@ $is_edit = (isset($peserta_kkn));
                 <option value="">= Pilih Provinsi =</option>
                 <?php
 foreach ($provinsi as $prop) {
-    if ($prop->id_prov == ((!$is_edit) ? '' : $peserta_kkn->provinsi)) {
-        echo '<option value="' . $prop->id_prov . '" selected>' . $prop->nama_prov . '</option>';
+    if ($prop->id == ((!$is_edit) ? '' : $peserta_kkn->provinsi)) {
+        echo '<option value="' . $prop->id . '" selected>' . $prop->name . '</option>';
     } else {
-        echo '<option value="' . $prop->id_prov . '">' . $prop->nama_prov . '</option>';
+        echo '<option value="' . $prop->id . '">' . $prop->name . '</option>';
     }
 }
 ?>
@@ -104,10 +104,10 @@ foreach ($provinsi as $prop) {
                 <option value="">= Pilih Kota/Kabupaten =</option>
                 <?php
 foreach ($kota as $kot) {
-    if ($kot->id_kota == ((!$is_edit) ? '' : $peserta_kkn->kota)) {
-        echo '<option value="' . $kot->id_kota . '" selected>' . $kot->nama_kota . '</option>';
+    if ($kot->id == ((!$is_edit) ? '' : $peserta_kkn->kota)) {
+        echo '<option value="' . $kot->id . '" selected>' . $kot->name . '</option>';
     } else {
-        echo '<option value="' . $kot->id_kota . '">' . $kot->nama_kota . '</option>';
+        echo '<option value="' . $kot->id . '">' . $kot->name . '</option>';
     }
 }
 ?>
@@ -122,10 +122,10 @@ foreach ($kota as $kot) {
                 <option value="">= Pilih Kecamatan =</option>
                 <?php
 foreach ($kecamatan as $kec) {
-    if ($kec->id_kec == ((!$is_edit) ? '' : $peserta_kkn->kecamatan)) {
-        echo '<option value="' . $kec->id_kec . '" selected>' . $kec->nama_kec . '</option>';
+    if ($kec->id == ((!$is_edit) ? '' : $peserta_kkn->kecamatan)) {
+        echo '<option value="' . $kec->id . '" selected>' . $kec->name . '</option>';
     } else {
-        echo '<option value="' . $kec->id_kec . '">' . $kec->nama_kec . '</option>';
+        echo '<option value="' . $kec->id . '">' . $kec->name . '</option>';
     }
 }
 ?>
@@ -140,10 +140,10 @@ foreach ($kecamatan as $kec) {
                 <option value="">= Pilih Kelurahan =</option>
                 <?php
 foreach ($kelurahan as $kel) {
-    if ($kel->id_kel == ((!$is_edit) ? '' : $peserta_kkn->kelurahan)) {
-        echo '<option value="' . $kel->id_kel . '" selected>' . $kel->nama_kel . '</option>';
+    if ($kel->id == ((!$is_edit) ? '' : $peserta_kkn->kelurahan)) {
+        echo '<option value="' . $kel->id . '" selected>' . $kel->name . '</option>';
     } else {
-        echo '<option value="' . $kel->id_kel . '">' . $kel->nama_kel . '</option>';
+        echo '<option value="' . $kel->id . '">' . $kel->name . '</option>';
     }
 }
 ?>
@@ -295,9 +295,9 @@ if (isset($id_prodi)) {
                 <label class="custom-control-label" for="kknn_pekerjaan_K">Petugas Keamanan</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->pekerjaan; ?>" name="kknn_pekerjaan" id="kknn_pekerjaan_L" rel="attach" placeholder="Bekerja"  <?php echo ($is_edit && (in_array($peserta_kkn->pekerjaan, ["guru", "tendik", "jagatoko", "wiraswasta", "keamanan"])) == false) ? "checked" : ""; ?>/>
+                <input type="radio" class="custom-control-input" value="<?php echo ($is_edit && (in_array($peserta_kkn->pekerjaan, ["guru", "tendik", "jagatoko", "wiraswasta", "keamanan"])) == false) ? $peserta_kkn->pekerjaan : ""; ?>" name="kknn_pekerjaan" id="kknn_pekerjaan_L" rel="attach" placeholder="Bekerja"  <?php echo ($is_edit && (in_array($peserta_kkn->pekerjaan, ["guru", "tendik", "jagatoko", "wiraswasta", "keamanan"])) == false) ? "checked" : ""; ?>/>
                 <label class="custom-control-label" for="kknn_pekerjaan_L">Yang lain:
-                    <input type="text" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->pekerjaan; ?>" id="kknn_pekerjaan_L_in" placeholder="Jenis Pekerjaan"/>
+                    <input type="text" class="form-control" value="<?php echo ($is_edit && (in_array($peserta_kkn->pekerjaan, ["guru", "tendik", "jagatoko", "wiraswasta", "keamanan"])) == false) ? $peserta_kkn->pekerjaan : ""; ?>" id="kknn_pekerjaan_L_in" placeholder="Jenis Pekerjaan"/>
                 </label>
             </div>
         </div>
@@ -319,9 +319,9 @@ if (isset($id_prodi)) {
                 <label class="custom-control-label" for="kknn_status_pekerjaan_ST">Shift Time</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" value="lain" name="kknn_status_pekerjaan" id="kknn_status_pekerjaan_L" placeholder="Status Pekerjaan"  <?php echo ($is_edit && (in_array($peserta_kkn->status_pekerjaan, ["fulltime", "parttime", "shifttime"])) == false) ? "checked" : ""; ?>/>
+                <input type="radio" class="custom-control-input" value="<?php echo ($is_edit && (in_array($peserta_kkn->status_pekerjaan, ["fulltime", "parttime", "shifttime"])) == false) ? $peserta_kkn->status_pekerjaan : ""; ?>" name="kknn_status_pekerjaan" id="kknn_status_pekerjaan_L" placeholder="Status Pekerjaan"  <?php echo ($is_edit && (in_array($peserta_kkn->status_pekerjaan, ["fulltime", "parttime", "shifttime"])) == false) ? "checked" : ""; ?>/>
                 <label class="custom-control-label" for="kknn_status_pekerjaan_L">Yang Lain:
-                    <input type="text" class="form-control" value="<?php echo (!$is_edit) ? '' : $peserta_kkn->status_pekerjaan; ?>" id="kknn_status_pekerjaan_L_in" placeholder="Status Pekerjaan"/>
+                    <input type="text" class="form-control" value="<?php echo ($is_edit && (in_array($peserta_kkn->status_pekerjaan, ["fulltime", "parttime", "shifttime"])) == false) ? $peserta_kkn->status_pekerjaan : ""; ?>" id="kknn_status_pekerjaan_L_in" placeholder="Status Pekerjaan"/>
                 </label>
             </div>
         </div>
@@ -487,7 +487,7 @@ if (isset($id_prodi)) {
                             var html = '<option value="">Pilih Kota/Kabupaten</option>';
                             var i;
                             for(i=0; i<data.length; i++){
-                                html += '<option value='+data[i].id_kota+'>'+data[i].nama_kota+'</option>';
+                                html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
                             }
                             $('#kknn_kota').html(html);
                         }
@@ -506,7 +506,7 @@ if (isset($id_prodi)) {
                             var html = '<option value="">Pilih Kecamatan</option>';
                             var i;
                             for(i=0; i<data.length; i++){
-                                html += '<option value='+data[i].id_kec+'>'+data[i].nama_kec+'</option>';
+                                html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
                             }
                             $('#kknn_kecamatan').html(html);
                         }
@@ -525,7 +525,7 @@ if (isset($id_prodi)) {
                             var html = '<option value="">Pilih Desa/Kelurahan</option>';
                             var i;
                             for(i=0; i<data.length; i++){
-                                html += '<option value='+data[i].id_kel+'>'+data[i].nama_kel+'</option>';
+                                html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
                             }
                             $('#kknn_kelurahan').html(html);
                         }
@@ -535,101 +535,6 @@ if (isset($id_prodi)) {
             });
 </script>
 <script>
-/*$(document).ready(function(){
-
-    let suamiistri_check = $("#kknn_memiliki_keluarga_s, #kknn_memiliki_keluarga_i");
-    let suami = $("#suami");
-    let istri = $("#istri");
-
-    let hamil_check = $("input[name=kknn_hamil]");
-    let hamil = $("#hamil");
-
-    // suami.hide();
-    // istri.hide();
-
-    // hamil.hide();
-
-    jk_aksi();
-
-    //set when jenis kelamin selected
-    $("input[name=kknn_jenis_kelamin]").change(function(){
-        jk_aksi();
-    });
-
-    function jk_aksi()
-    {
-        let jk = $("input[name=kknn_jenis_kelamin]:checked").val();
-
-        if(jk == "L")
-        {
-            istri.show();
-            suami.hide();
-
-            hamil.hide();
-
-            suamiistri_check.prop('checked', false);
-            hamil_check.prop('checked', false);
-        }else if(jk == "P"){
-            suami.show();
-            istri.hide();
-
-            hamil.show();
-
-            suamiistri_check.prop('checked', false);
-            hamil_check.prop('checked', false);
-        }else{
-            suami.hide();
-            istri.hide();
-
-            hamil.hide();
-        }
-    }
-
-    let jenis_kerja = $("#jenis_pekerjaan");
-    let status_kerja = $("#status_pekerjaan");
-    let alamat_kerja = $("#alamat_kerja");
-
-    let jenis_k_check = $("input[name=kknn_pekerjaan]");
-    let status_k_check = $("input[name=kknn_status_pekerjaan]");
-    let alamat_k_in = $("#kknn_alamat_kerja");
-
-    // jenis_kerja.hide();
-    // status_kerja.hide();
-    // alamat_kerja.hide();
-
-    kerja_aksi();
-
-    //set when pekerjaan selected
-    $("input[name=kknn_bekerja]").change(function(){
-        kerja_aksi();
-    });
-
-    function kerja_aksi()
-    {
-        let kerja = $("input[name=kknn_bekerja]:checked").val();
-
-        if(kerja == "Y"){
-            jenis_kerja.show();
-            status_kerja.show();
-            alamat_kerja.show();
-
-            jenis_k_check.prop('checked', false);
-            status_k_check.prop('checked', false);
-            alamat_k_in.val("");
-        }else if(kerja == "N"){
-            jenis_kerja.hide();
-            status_kerja.hide();
-            alamat_kerja.hide();
-
-            jenis_k_check.prop('checked', false);
-            status_k_check.prop('checked', false);
-            alamat_k_in.val("");
-        }else{
-            jenis_kerja.hide();
-            status_kerja.hide();
-            alamat_kerja.hide();
-        }
-    }
     //set custom value pekerjaan
     $("input[name=kknn_pekerjaan]").change(function(){
         $("#kknn_pekerjaan_L_in").val("");
@@ -659,7 +564,132 @@ if (isset($id_prodi)) {
    $("#kknn_status_pekerjaan_L_in").change(function(){
         $("#kknn_status_pekerjaan_L").val($(this).val());
    });
-});*/
+
+// $(document).ready(function(){
+
+//     let suamiistri_check = $("#kknn_memiliki_keluarga_s, #kknn_memiliki_keluarga_i");
+//     let suami = $("#suami");
+//     let istri = $("#istri");
+
+//     let hamil_check = $("input[name=kknn_hamil]");
+//     let hamil = $("#hamil");
+
+//     // suami.hide();
+//     // istri.hide();
+
+//     // hamil.hide();
+
+//     jk_aksi();
+
+//     //set when jenis kelamin selected
+//     $("input[name=kknn_jenis_kelamin]").change(function(){
+//         jk_aksi();
+//     });
+
+//     function jk_aksi()
+//     {
+//         let jk = $("input[name=kknn_jenis_kelamin]:checked").val();
+
+//         if(jk == "L")
+//         {
+//             istri.show();
+//             suami.hide();
+
+//             hamil.hide();
+
+//             suamiistri_check.prop('checked', false);
+//             hamil_check.prop('checked', false);
+//         }else if(jk == "P"){
+//             suami.show();
+//             istri.hide();
+
+//             hamil.show();
+
+//             suamiistri_check.prop('checked', false);
+//             hamil_check.prop('checked', false);
+//         }else{
+//             suami.hide();
+//             istri.hide();
+
+//             hamil.hide();
+//         }
+//     }
+
+//     let jenis_kerja = $("#jenis_pekerjaan");
+//     let status_kerja = $("#status_pekerjaan");
+//     let alamat_kerja = $("#alamat_kerja");
+
+//     let jenis_k_check = $("input[name=kknn_pekerjaan]");
+//     let status_k_check = $("input[name=kknn_status_pekerjaan]");
+//     let alamat_k_in = $("#kknn_alamat_kerja");
+
+//     // jenis_kerja.hide();
+//     // status_kerja.hide();
+//     // alamat_kerja.hide();
+
+//     kerja_aksi();
+
+//     //set when pekerjaan selected
+//     $("input[name=kknn_bekerja]").change(function(){
+//         kerja_aksi();
+//     });
+
+//     function kerja_aksi()
+//     {
+//         let kerja = $("input[name=kknn_bekerja]:checked").val();
+
+//         if(kerja == "Y"){
+//             jenis_kerja.show();
+//             status_kerja.show();
+//             alamat_kerja.show();
+
+//             jenis_k_check.prop('checked', false);
+//             status_k_check.prop('checked', false);
+//             alamat_k_in.val("");
+//         }else if(kerja == "N"){
+//             jenis_kerja.hide();
+//             status_kerja.hide();
+//             alamat_kerja.hide();
+
+//             jenis_k_check.prop('checked', false);
+//             status_k_check.prop('checked', false);
+//             alamat_k_in.val("");
+//         }else{
+//             jenis_kerja.hide();
+//             status_kerja.hide();
+//             alamat_kerja.hide();
+//         }
+//     }
+//     //set custom value pekerjaan
+//     $("input[name=kknn_pekerjaan]").change(function(){
+//         $("#kknn_pekerjaan_L_in").val("");
+//     });
+//     $("#kknn_pekerjaan_L").change(function(){
+//         if($(this).attr("rel") == "attach")
+//         {
+//             $(this).val($("#kknn_pekerjaan_L_in").val());
+//         }
+//     });
+
+//    $("#kknn_pekerjaan_L_in").change(function(){
+//         $("#kknn_pekerjaan_L").val($(this).val());
+//    });
+
+//    //set custom value jenis pekerjaan
+//    $("input[name=kknn_status_pekerjaan]").change(function(){
+//         $("#kknn_status_pekerjaan_L_in").val("");
+//     });
+//     $("#kknn_status_pekerjaan_L").change(function(){
+//         if($(this).attr("rel") == "attach")
+//         {
+//             $(this).val($("#kknn_status_pekerjaan_L_in").val());
+//         }
+//     });
+
+//    $("#kknn_status_pekerjaan_L_in").change(function(){
+//         $("#kknn_status_pekerjaan_L").val($(this).val());
+//    });
+// });
 </script>
 <!--  LOADING DATEPICKER -->
 <link href="<?php echo base_url(); ?>asset/addon/datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">

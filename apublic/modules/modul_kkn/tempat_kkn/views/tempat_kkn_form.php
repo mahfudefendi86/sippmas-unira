@@ -52,10 +52,10 @@ if (isset($id_thn_kkn)) {
                     <option value="">= Pilih Provinsi =</option>
                     <?php
 foreach ($provinsi as $prop) {
-    if ($prop->id_prov == ((!$is_edit) ? '' : $tempat_kkn->provinsi)) {
-        echo '<option value="' . $prop->id_prov . '" selected>' . $prop->nama_prov . '</option>';
+    if ($prop->id == ((!$is_edit) ? '' : $tempat_kkn->provinsi)) {
+        echo '<option value="' . $prop->id . '" selected>' . $prop->name . '</option>';
     } else {
-        echo '<option value="' . $prop->id_prov . '">' . $prop->nama_prov . '</option>';
+        echo '<option value="' . $prop->id . '">' . $prop->name . '</option>';
     }
 }
 ?>
@@ -70,10 +70,10 @@ foreach ($provinsi as $prop) {
                     <option value="">= Pilih Kota/Kabupaten =</option>
                     <?php
 foreach ($kota as $kot) {
-    if ($kot->id_kota == ((!$is_edit) ? '' : $tempat_kkn->kota)) {
-        echo '<option value="' . $kot->id_kota . '" selected>' . $kot->nama_kota . '</option>';
+    if ($kot->id == ((!$is_edit) ? '' : $tempat_kkn->kota)) {
+        echo '<option value="' . $kot->id . '" selected>' . $kot->name . '</option>';
     } else {
-        echo '<option value="' . $kot->id_kota . '">' . $kot->nama_kota . '</option>';
+        echo '<option value="' . $kot->id . '">' . $kot->name . '</option>';
     }
 }
 ?>
@@ -88,10 +88,10 @@ foreach ($kota as $kot) {
                     <option value="">= Pilih Kecamatan =</option>
                     <?php
 foreach ($kecamatan as $kec) {
-    if ($kec->id_kec == ((!$is_edit) ? '' : $tempat_kkn->kecamatan)) {
-        echo '<option value="' . $kec->id_kec . '" selected>' . $kec->nama_kec . '</option>';
+    if ($kec->id == ((!$is_edit) ? '' : $tempat_kkn->kecamatan)) {
+        echo '<option value="' . $kec->id . '" selected>' . $kec->name . '</option>';
     } else {
-        echo '<option value="' . $kec->id_kec . '">' . $kec->nama_kec . '</option>';
+        echo '<option value="' . $kec->id . '">' . $kec->name . '</option>';
     }
 }
 ?>
@@ -106,10 +106,10 @@ foreach ($kecamatan as $kec) {
                     <option value="">= Pilih Kelurahan =</option>
                     <?php
 foreach ($kelurahan as $kel) {
-    if ($kel->id_kel == ((!$is_edit) ? '' : $tempat_kkn->kelurahan)) {
-        echo '<option value="' . $kel->id_kel . '" selected>' . $kel->nama_kel . '</option>';
+    if ($kel->id == ((!$is_edit) ? '' : $tempat_kkn->kelurahan)) {
+        echo '<option value="' . $kel->id . '" selected>' . $kel->name . '</option>';
     } else {
-        echo '<option value="' . $kel->id_kel . '">' . $kel->nama_kel . '</option>';
+        echo '<option value="' . $kel->id . '">' . $kel->name . '</option>';
     }
 }
 ?>
@@ -232,9 +232,8 @@ $(document).ready(function() {
             success: function(data) {
                 var html = '<option value="">Pilih Kota/Kabupaten</option>';
                 var i;
-                for (i = 0; i < data.length; i++) {
-                    html += '<option value=' + data[i].id_kota + '>' + data[i].nama_kota +
-                        '</option>';
+                for(i=0; i<data.length; i++){
+                    html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
                 }
                 $('#tp__kota').html(html);
             }
@@ -254,9 +253,8 @@ $(document).ready(function() {
             success: function(data) {
                 var html = '<option value="">Pilih Kecamatan</option>';
                 var i;
-                for (i = 0; i < data.length; i++) {
-                    html += '<option value=' + data[i].id_kec + '>' + data[i].nama_kec +
-                        '</option>';
+                for(i=0; i<data.length; i++){
+                    html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
                 }
                 $('#tp__kecamatan').html(html);
             }
@@ -276,9 +274,8 @@ $(document).ready(function() {
             success: function(data) {
                 var html = '<option value="">Pilih Desa/Kelurahan</option>';
                 var i;
-                for (i = 0; i < data.length; i++) {
-                    html += '<option value=' + data[i].id_kel + '>' + data[i].nama_kel +
-                        '</option>';
+                for(i=0; i<data.length; i++){
+                    html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
                 }
                 $('#tp__kelurahan').html(html);
             }
