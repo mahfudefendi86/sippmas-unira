@@ -81,7 +81,7 @@ class Cetak_pdf extends Member_Control {
 				if($up)
 				redirect("cetak_pdf/format_tgjb/".$in['id_penelitian']);
 			}else{
-				echo "hhh";
+				echo "Data tidak ditemukan";
 			}
 		}
 /* Cetak PDF TGJB */
@@ -104,26 +104,29 @@ class Cetak_pdf extends Member_Control {
 
 					ini_set('memory_limit','32M'); // boost the memory limit if it's low ;)
 					$html = $this->load->view('cetak_pdf/penelitian_format_tgjb_pdf', $data,true); // render the view into HTML
-					$this->load->library('pdf');
-					$pdf = $this->pdf->load();
+					$this->load->library('mypdf');
+					$pdf = $this->mypdf->load();
 					$pdf->SetTitle($data['title']);
 					$pdf->SetAuthor('Mahfud Efendi');
 					$pdf->SetCreator('SIPPMas Apps');
 					$pdf->SetSubject('Cetak Tanggung Jawab Belanja');
+					$pdf->autoPageBreak = true;
 					$pdf->use_kwt = true; //Keep With Table
 					//$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure ;)
-					$pdf->AddPageByArray(array(
-						'orientation' => 'P',
-						'mgl' => '20',
-						'mgr' => '20',
-						'mgt' => '15',
-						'mgb' => '15',
-						'mgh' => '10',
-						'mgf' => '10',
-					));
+					// $pdf->AddPageByArray(array(
+					// 	'orientation' => 'P',
+					// 	'mgl' => '20',
+					// 	'mgr' => '20',
+					// 	'mgt' => '15',
+					// 	'mgb' => '15',
+					// 	'mgh' => '10',
+					// 	'mgf' => '10',
+					// ));
 					$pdf->WriteHTML($html); // write the HTML into the PDF
-					$pdf->Output($filename, "I"); // Inline view browser
-					//$pdf->Output($filename, "D"); // Download File
+					
+					$nama_pdf=str_replace(array(',','.',' '),"_",$data['penelitian']->nama);
+					// $pdf->Output($nama_pdf.".pdf", "D"); // Download File
+					$pdf->Output($nama_pdf.".pdf", "I"); // Inline view browser
 
 				}
 			}else{
