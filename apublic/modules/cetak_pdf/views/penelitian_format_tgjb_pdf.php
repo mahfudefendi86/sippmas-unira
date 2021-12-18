@@ -5,13 +5,14 @@ $format=(!$is_edit) ? '' : json_decode($conten->content);
 //var_dump($format);
 ?>
     <page size="A4" id="section">
-        <p align="center"><strong><u>SURAT PERNYATAAN TANGGUNG JAWAB BELANJA</u></strong></p>
+        <p style="text-align:center;"><strong><u>SURAT PERNYATAAN TANGGUNG JAWAB BELANJA</u></strong></p>
         <p>Yang bertanda tangan di bawah ini :<br/>
              <table>
                  <tr><td style="width:100px">Nama</td><td style="width:400px">: <?php echo $penelitian->nama;?></td></tr>
                  <tr><td style="width:100px">Alamat</td><td style="width:400px">: <?php echo ucwords(strtolower($penelitian->alamat.' '.$penelitian->desa.' '.$penelitian->kecamatan.' '.$penelitian->kotakab));?></td></tr>
             </table>
         <br/>
+        </p>
         Berdasarkan Surat Keputusan Nomor <?php echo (!$is_edit) ? '' : $format->no_keputusan;?> dan Perjanjian / Kontrak Nomor <?php echo (!$is_edit) ? '' : $format->no_kontrak;?>
         mendapatkan Anggaran Penelitian <?php echo strtoupper($penelitian->judul_penelitian);?> sebesar Rp. <?php echo (!$is_edit) ? "": number_format($format->nominal_dana,2,",",".");?>.
         <p>
@@ -80,7 +81,7 @@ $format=(!$is_edit) ? '' : json_decode($conten->content);
             </ol>
         <br/>Demikian surat pernyataan ini dibuat dengan sebenarnya.</p>
         <br/><br/><br/>
-        <table align="right">
+         <table align="right">
             <tr>
             <td align="center">
 
@@ -94,10 +95,5 @@ $format=(!$is_edit) ? '' : json_decode($conten->content);
     </page>
 
 <?php }else{ ;?>
-    <div class="card">
-        <div class="card-body">
-            <h3 class="text-danger pb-2">Maaf data tidak ditemukan....!</h3>
-            <button class="btn btn-sm btn-warning" onclick="window.history.back();"><i class="fa fa-chevron-left"></i> Kembali</button>
-        </div>
-    </div>
+    <p>Maaf data tidak ditemukan....!</p>    
 <?php };?>
