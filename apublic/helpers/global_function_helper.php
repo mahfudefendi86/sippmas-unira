@@ -17,6 +17,19 @@ if (!function_exists('active_link')) {
     }
 }
 
+if (!function_exists('active_sublink')) {
+    function active_sublink($link)
+    {
+        $CI = &get_instance();
+        $CI->load->library('session');
+        if ($CI->session->tempdata('active_sublink') != $link) {
+            $CI->session->unset_tempdata('active_sublink');
+            $CI->session->set_tempdata('active_sublink', $link, 600);
+        }
+        return true;
+    }
+}
+
 ////Merubah bentuk digit kedalam bentuk Nominal Rupiah
 if (!function_exists('convertRP')) {
     function convertRP($nominal, $dec = null)
@@ -241,7 +254,7 @@ if (!function_exists('nama_kelurahan')) {
     {
         $CI = &get_instance();
         $kelurahan = $CI->db->get_where('_m_desa', ['id' => $id_kelurahan])->row_array();
-        $nama_kelurahan = $kelurahan['nama'];
+        $nama_kelurahan = $kelurahan['name'];
 
         return $nama_kelurahan;
     }

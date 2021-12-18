@@ -55,8 +55,9 @@ $route['translate_uri_dashes'] = false;
 
 $route['registrasi/kkn'] = 'main/registrasi_kkn';
 $route['konfirmasi/kkn/(:any)'] = 'main/konfirmasi_kkn/$1';
-$route['peserta/kkn'] = 'peserta_kkn';
 $route['validasi/peserta/kkn/(:any)/(:any)'] = 'peserta_kkn/validasi_peserta/$1/$2';
+
+$route['peserta/kkn'] = 'peserta_kkn';
 $route['tahun_ajaran/kkn'] = 'tahun_ajaran';
 $route['tempat/kkn'] = 'tempat_kkn';
 $route['kelompok/kkn'] = 'kelompok_kkn';

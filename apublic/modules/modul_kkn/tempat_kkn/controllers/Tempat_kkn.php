@@ -3,7 +3,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Tempat_kkn extends CI_Controller
+class Tempat_kkn extends Member_Control
 {
 
     public function __construct()
@@ -11,6 +11,8 @@ class Tempat_kkn extends CI_Controller
         parent::__construct();
         $this->load->helper(array('url'));
         $this->load->model(array('tempat_kkn_model', 'main/main_model'));
+        active_link("master");
+        active_sublink("tempat_kkn");
     }
 
     public function index($s = 0)
@@ -23,7 +25,7 @@ class Tempat_kkn extends CI_Controller
         $data['title'] = "Daftar Tempat KKN";
         $data['s'] = $s;
         $data['op_search'] = array("A.nama_tempat" => "Nama Tempat KKN", "A.alamat" => "Alamat KKN");
-        $this->template->mainview('tempat_kkn/tempat_kkn_index', $data);
+        $this->template->kknview('tempat_kkn/tempat_kkn_index', $data);
     }
 
     public function tempat_kkn_show($st = null, $option = "")

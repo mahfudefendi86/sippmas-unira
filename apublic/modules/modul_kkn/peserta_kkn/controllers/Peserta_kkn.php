@@ -12,6 +12,7 @@ class Peserta_kkn extends Member_Control
         $this->load->helper(array('url', 'format_tanggal'));
         $this->load->model(array('peserta_kkn_model', 'main/main_model'));
         active_link("master");
+        active_sublink("peserta_kkn");
     }
 
     public function index($s = 0)
@@ -114,6 +115,10 @@ class Peserta_kkn extends Member_Control
                 $this->upload->initialize($config);
 
                 if ($this->upload->do_upload('kknn_upload')) {
+                    $berkas_lama = $in['berkas_lama'];
+                    if ($berkas_lama != '') {
+                        unlink(FCPATH . 'asset/uploads/berkas/pembayaran_kkn/' . $berkas_lama);
+                    }
                     $new_image = [
                         'berkas' => $this->upload->data('file_name'),
                     ];
