@@ -24,7 +24,7 @@ class Penelitian extends Member_Control {
 			 $data['title']="Daftar Pengajuan ".ucfirst(strtolower($s));
 			 $data['status']=$s;
 			 $data['jenis_usulan']=$ju;
-			 $data['anggaran']=$this->anggaran_model->show_data_anggaran()->result();
+			 $data['anggaran']=$this->anggaran_model->show_data_anggaran(" ORDER BY A.tahun_anggaran DESC ")->result();
 			 $this->template->mainview('penelitian/penelitian_index',$data);
 		}
 
@@ -165,21 +165,21 @@ class Penelitian extends Member_Control {
 		function ploting(){
 			active_link("reviewer");
 			$data['title']="Plotting Reviewer";
-			$data['anggaran']=$this->anggaran_model->show_data_anggaran()->result();
+			$data['anggaran']=$this->anggaran_model->show_data_anggaran(" ORDER BY A.tahun_anggaran DESC ")->result();
 			$this->template->mainview('penelitian/penelitian_index_ploting',$data);
 		}
 /* INPUT NILAI REVIWER */
 		function nilairev(){
 			active_link("reviewer");
 			$data['title']="Input Nilai Review";
-			$data['anggaran']=$this->anggaran_model->show_data_anggaran()->result();
+			$data['anggaran']=$this->anggaran_model->show_data_anggaran(" ORDER BY A.tahun_anggaran DESC ")->result();
 			$this->template->mainview('penelitian/penelitian_index_nilai',$data);
 		}
 /* Hasil NILAI REVIWER */
 		function hasilnilairev(){
 			active_link("reviewer");
 			$data['title']="Hasil Nilai Review";
-			$data['anggaran']=$this->anggaran_model->show_data_anggaran()->result();
+			$data['anggaran']=$this->anggaran_model->show_data_anggaran(" ORDER BY A.tahun_anggaran DESC ")->result();
 			$this->template->mainview('penelitian/penelitian_index_nilai_hasil',$data);
 		}
 
@@ -428,14 +428,14 @@ class Penelitian extends Member_Control {
 		function catatan(){
 			active_link("pelaksanaan");
 			$data['title']="Catatan Harian";
-			$data['anggaran']=$this->anggaran_model->show_data_anggaran()->result();
+			$data['anggaran']=$this->anggaran_model->show_data_anggaran(" ORDER BY A.tahun_anggaran DESC ")->result();
 			$this->template->mainview('penelitian/penelitian_index_catatan',$data);
 		}
 /* LAporan Kemajuan SELECT */
 		function kemajuan(){
 			active_link("pelaksanaan");
 			$data['title']="Unggah Laporan Kemajuan";
-			$data['anggaran']=$this->anggaran_model->show_data_anggaran()->result();
+			$data['anggaran']=$this->anggaran_model->show_data_anggaran(" ORDER BY A.tahun_anggaran DESC ")->result();
 			$this->template->mainview('penelitian/penelitian_index_kemajuan',$data);
 		}
 /* download Laporan Kemajuan */
@@ -448,7 +448,7 @@ class Penelitian extends Member_Control {
 		function akhir(){
 			active_link("pelaksanaan");
 			$data['title']="Unggah Laporan Akhir";
-			$data['anggaran']=$this->anggaran_model->show_data_anggaran()->result();
+			$data['anggaran']=$this->anggaran_model->show_data_anggaran(" ORDER BY A.tahun_anggaran DESC ")->result();
 			$this->template->mainview('penelitian/penelitian_index_akhir',$data);
 		}
 /* download Laporan Akhir */
@@ -462,7 +462,7 @@ class Penelitian extends Member_Control {
 		function tanggung_jawab_belanja(){
 			active_link("pelaksanaan");
 			$data['title']="Unggah Tanggung Jawab Belanja";
-			$data['anggaran']=$this->anggaran_model->show_data_anggaran()->result();
+			$data['anggaran']=$this->anggaran_model->show_data_anggaran(" ORDER BY A.tahun_anggaran DESC ")->result();
 			$this->template->mainview('penelitian/penelitian_index_tanggung_jwb_blj',$data);
 		}
 

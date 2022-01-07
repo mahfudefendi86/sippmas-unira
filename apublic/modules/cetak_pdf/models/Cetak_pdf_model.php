@@ -22,7 +22,7 @@
 			$this->db->select('*')->from('pr_penelitian_cetak_pdf');
 			$this->db->where('jenis_cetak',$jc);
 			$this->db->where('id_penelitian',$id_penelitian);
-			$this->db->where('id_user',$id_user);
+			// $this->db->where('id_user',$id_user);
 			return  $this->db->get();
 		}
 }
