@@ -53,11 +53,17 @@ $route['default_controller'] = 'main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
-$route['registrasi/kkn'] = 'main/registrasi_kkn';
-$route['konfirmasi/kkn/(:any)'] = 'main/konfirmasi_kkn/$1';
-$route['validasi/peserta/kkn/(:any)/(:any)'] = 'peserta_kkn/validasi_peserta/$1/$2';
+$route['kkn/registrasi'] = 'main/registrasi_kkn';
+$route['kkn/konfirmasi/(:any)'] = 'main/konfirmasi_kkn/$1';
+$route['kkn/validasi/peserta/(:any)/(:any)'] = 'peserta_kkn/validasi_peserta/$1/$2';
 
-$route['peserta/kkn'] = 'peserta_kkn';
-$route['tahun_ajaran/kkn'] = 'tahun_ajaran';
-$route['tempat/kkn'] = 'tempat_kkn';
-$route['kelompok/kkn'] = 'kelompok_kkn';
+$route['kkn/peserta'] = 'peserta_kkn';
+$route['kkn/peserta/cari'] = 'peserta_kkn/cari_peserta_kkn';
+
+$route['kkn/tahun_ajaran'] = 'tahun_ajaran';
+$route['kkn/tempat'] = 'tempat_kkn';
+$route['kkn/kelompok'] = 'kelompok_kkn';
+
+$route['kkn/plotting'] = 'plotting_kkn';
+$route['kkn/plotting/add'] = 'plotting_kkn/plotting_kkn_add';
+$route['kkn/plotting/add/(:any)'] = 'plotting_kkn/plotting_kkn_add/$1';

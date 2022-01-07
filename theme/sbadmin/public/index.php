@@ -7,20 +7,20 @@
     <meta name="description" content="Sistem Informasi Penelitian dan Pengabdian Mayarakat (SIPPMas) UNIRA Malang">
     <meta name="keywords" content="Penelitian, Pengabdian, Sistem Informasi">
     <meta name="author" content="Mahfud Efendi">
-    <link rel="icon" href="<?php echo base_url();?>asset/images/favicon.jpg">
+    <link rel="icon" href="<?php echo base_url(); ?>asset/images/favicon.jpg">
 
-    <title><?php echo isset($title)?$title:"SIPPMas (Sistem Informasi Penelitian Dan Pengabdian Masyarakat)";?></title>
+    <title><?php echo isset($title) ? $title : "SIPPMas (Sistem Informasi Penelitian Dan Pengabdian Masyarakat)"; ?></title>
 
     <!-- Bootstrap core CSS-->
-   <link type="text/css" href="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link type="text/css" href="<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <!-- Custom fonts for this template-->
-   <link type="text/css" href="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-   <link media="screen" type="text/css" href="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/css/carousel.css" rel="stylesheet">
-   <link media="screen" type="text/css" href="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/css/mymain.css" rel="stylesheet">
+   <link type="text/css" href="<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+   <link media="screen" type="text/css" href="<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/css/carousel.css" rel="stylesheet">
+   <link media="screen" type="text/css" href="<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/css/mymain.css" rel="stylesheet">
    <!-- Custom fonts for this template-->
-   <link type="text/css" href="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-   <link type="text/css" href="<?php echo base_url();?>asset/css/berita.css" rel="stylesheet">
-   <script src="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/jquery/jquery.min.js"></script>
+   <link type="text/css" href="<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+   <link type="text/css" href="<?php echo base_url(); ?>asset/css/berita.css" rel="stylesheet">
+   <script src="<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/vendor/jquery/jquery.min.js"></script>
    <style>
   .loader_anim {
       display: none;
@@ -50,16 +50,16 @@
   </style>
   </head>
   <?php
-      /* cek Link Menu */
-      $u1=$this->uri->slash_segment(1);
-      $u2=$this->uri->slash_segment(2);
-    ?>
+/* cek Link Menu */
+$u1 = $this->uri->slash_segment(1);
+$u2 = $this->uri->slash_segment(2);
+?>
   <body class="sticky-footer" id="page-top">
     <header>
       <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
           <a class="navbar-brand" href="#">
               <div class="wrap_brand">
-                  <img src="<?php echo base_url();?>asset/images/favicon.jpg" width="55" class="d-inline-block align-top" alt="Logo Unira">
+                  <img src="<?php echo base_url(); ?>asset/images/favicon.jpg" width="55" class="d-inline-block align-top" alt="Logo Unira">
                   <div class="title_brand d-xs-block d-sm-block d-md-block d-xl-block d-none">SIPPMas</div>
                   <div class="description_brand d-sm-block d-md-block d-xl-block d-none">Sistem Informasi Penelitian dan Pengabdian Masyarakat</div>
               </div>
@@ -69,24 +69,30 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item <?php if($u1=="main/" && $u2=="/"){ echo 'active';};?>">
-              <a class="nav-link" href="<?php echo site_url('main/');?>"><i class="fa fa-home"></i> Beranda <span class="sr-only">(current)</span></a>
+            <li class="nav-item <?php if ($u1 == "main/" && $u2 == "/") {echo 'active';}
+;?>">
+              <a class="nav-link" href="<?php echo site_url('main/'); ?>"><i class="fa fa-home"></i> Beranda <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item <?php if($u1=="registrasi/" && $u2=="kkn/"){ echo 'active';};?>">
-              <a class="nav-link" href="<?php echo site_url('registrasi/kkn/');?>"><i class="fa fa-user"></i> Pendaftaran KKN <span class="sr-only">(current)</span></a>
+            <li class="nav-item <?php if ($u1 == "registrasi/" && $u2 == "kkn/") {echo 'active';}
+;?>">
+              <a class="nav-link" href="<?php echo site_url('registrasi/kkn/'); ?>"><i class="fa fa-user"></i> Pendaftaran KKN <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item <?php if($u1=="main/" && $u2=="link/"){ echo 'active';};?>">
-              <a class="nav-link" href="<?php echo site_url('main/link/');?>"><i class="fa fa-newspaper-o"></i> Berita</a>
+            <li class="nav-item <?php if ($u1 == "main/" && $u2 == "link/") {echo 'active';}
+;?>">
+              <a class="nav-link" href="<?php echo site_url('main/link/'); ?>"><i class="fa fa-newspaper-o"></i> Berita</a>
             </li>
-            <?php if($this->session->userdata('id_user')){ ;?>
+            <?php if ($this->session->userdata('id_user')) {;?>
+
                 <li class="nav-item">
-                  <a class="nav-link text-primary" href="<?php echo site_url('main/dashboard');?>"><i class="fa fa-user-circle"></i> <?php echo $this->session->userdata('nama');?></a>
+                  <a class="nav-link text-primary" href="<?php echo site_url('member_login/login'); ?>"><i class="fa fa-user-circle"></i> <?php echo $this->session->userdata('nama'); ?></a>
                 </li>
-            <?php }else{;?>
-            <li class="nav-item <?php if($u1=="member_login/" && $u2=="login/"){ echo 'active';};?>">
-              <a class="nav-link" href="<?php echo site_url('member_login/login/');?>"><i class="fa fa-sign-in"></i> Login</a>
+            <?php } else {;?>
+            <li class="nav-item <?php if ($u1 == "member_login/" && $u2 == "login/") {echo 'active';}
+    ;?>">
+              <a class="nav-link" href="<?php echo site_url('member_login/login/'); ?>"><i class="fa fa-sign-in"></i> Login</a>
             </li>
-        <?php };?>
+        <?php }
+;?>
           </ul>
           <!-- <form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -98,14 +104,14 @@
 
     <main role="main">
 
-        <?php echo isset($header)?$header:"";?>
+        <?php echo isset($header) ? $header : ""; ?>
 
       <div class="container">
         <!-- Three columns of text below the carousel -->
         <div class="row">
           <div class="col-md-9 col-lg-9 col-sm-12 featurette" >
 
-                <?php echo isset($content)?$content:"";?>
+                <?php echo isset($content) ? $content : ""; ?>
 
           </div><!-- /.col-lg-4 -->
           <div class="col-md-3 col-lg-3 col-sm-12">
@@ -114,38 +120,38 @@
                     Menu
                   </div>
                       <div class="list-group list-group-flush">
-                        <a href="<?php echo site_url('main/');?>" class="list-group-item list-group-item-action text-secondary"><i class="fa fa-home"></i> Beranda</a>
+                        <a href="<?php echo site_url('main/'); ?>" class="list-group-item list-group-item-action text-secondary"><i class="fa fa-home"></i> Beranda</a>
                       </div>
                        <?php
-                            if(isset($menu)){
-                                foreach ($menu as $menus) {
-                                    echo '<div class="list-group list-group-flush">
-                                      <a href="'.site_url('main/link/'.$menus->id_kategori).'" class="list-group-item list-group-item-action text-secondary"><i class="'.$menus->ikon.'"></i> '.$menus->kategori.'
-                                      <span class="badge badge-primary badge-pill float-right">'.$menus->count_berita.'</span></a>
+if (isset($menu)) {
+    foreach ($menu as $menus) {
+        echo '<div class="list-group list-group-flush">
+                                      <a href="' . site_url('main/link/' . $menus->id_kategori) . '" class="list-group-item list-group-item-action text-secondary"><i class="' . $menus->ikon . '"></i> ' . $menus->kategori . '
+                                      <span class="badge badge-primary badge-pill float-right">' . $menus->count_berita . '</span></a>
                                     </div>';
-                                }
-                            }
-                       ;?>
+    }
+}
+;?>
               </div>
               <div class="card">
                     <div class="card-header h5 text-white bg-secondary">
                     Recent Post
                     </div>
                     <?php
-                    if(isset($post)){
-                        foreach ($post as $posts) {
-                            $isi = (strlen($posts->judul)>70)?substr($posts->judul,0,70)."....":$posts->judul;
-                            echo '<div class="list-group list-group-flush">
-                              <a href="'.site_url('main/detail/'.$posts->id_berita).'" class="list-group-item list-group-item-action text-secondary"><small>'.$isi.'</small>
+if (isset($post)) {
+    foreach ($post as $posts) {
+        $isi = (strlen($posts->judul) > 70) ? substr($posts->judul, 0, 70) . "...." : $posts->judul;
+        echo '<div class="list-group list-group-flush">
+                              <a href="' . site_url('main/detail/' . $posts->id_berita) . '" class="list-group-item list-group-item-action text-secondary"><small>' . $isi . '</small>
                               <div class="">
-                                  <span class="widget_sm" ><small><i class="fa fa-calendar"></i> '.tgl_indo($posts->tanggal).'</small></span>
-                                  <span class="widget_sm" ><small><i class="fa fa-clock-o"></i> '.$posts->jam.'</small></span>
+                                  <span class="widget_sm" ><small><i class="fa fa-calendar"></i> ' . tgl_indo($posts->tanggal) . '</small></span>
+                                  <span class="widget_sm" ><small><i class="fa fa-clock-o"></i> ' . $posts->jam . '</small></span>
                               </div>
                               </a>
                             </div>';
-                        }
-                    }
-                    ?>
+    }
+}
+?>
 
               </div>
           </div><!-- /.col-lg-4 -->
@@ -223,13 +229,13 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    
-    <script>window.jQuery || document.write('<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/jquery/jquery.slim.min.js"><\/script>')</script>
+
+    <script>window.jQuery || document.write('<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/vendor/jquery/jquery.slim.min.js"><\/script>')</script>
     <!-- Bootstrap core JavaScript-->
-    <script src="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/bootstrap/js/popper.min.js"></script>
-    <script src="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/vendor/bootstrap/js/popper.min.js"></script>
+    <script src="<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
-    <script src="<?php echo base_url();?>theme/<?php echo $this->config->item('theme');?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?php echo base_url(); ?>theme/<?php echo $this->config->item('theme'); ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script>
         (function($) {
           "use strict"; // Start of use strict

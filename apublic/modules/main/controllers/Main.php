@@ -241,15 +241,15 @@ class Main extends CI_Controller
         $captcha = $in['security_code'];
 
         if ($upload_image) {
-            $path_dir_file='file_uploaded/pembayaran_kkn/';
-			if(!file_exists($path_dir_file)){mkdir($path_dir_file,0777,true);}
+            $path_dir_file = 'file_uploaded/pembayaran_kkn/';
+            if (!file_exists($path_dir_file)) {mkdir($path_dir_file, 0777, true);}
 
             $config = [
                 'allowed_types' => 'jpg|jpeg|pdf',
                 'max_size' => '1024',
                 'file_name' => str_replace(' ', '_', 'kkn_' . $data_in['nim']),
                 'upload_path' => $path_dir_file,
-                'overwrite'=>true
+                'overwrite' => true,
             ];
 
             $this->load->library('upload');
@@ -346,7 +346,7 @@ class Main extends CI_Controller
                     $input_data = $this->db->insert('_m_usr_login', $data_in);
 
                     if ($input_data) {
-                        $notif = "Konfirmasi Pendaftaran KKN Berhasil.";
+                        $notif = "Konfirmasi Pendaftaran KKN Berhasil. Terima Kasih telah melakukan pendaftaran. Akun anda akan aktif setelah admin memverifikasi data anda.";
                         echo json_encode(array('msg' => $notif, 'status' => 'OK'));
                     } else {
                         $notif = "Konfirmasi Pendaftaran KKN Gagal.";

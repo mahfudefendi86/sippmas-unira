@@ -1,56 +1,58 @@
 <?php
-$is_edit=(isset($kelompok_kkn));
+$is_edit = (isset($kelompok_kkn));
 ?>
 <div class="card p-3 mb-3">
-	<form class="form-horizontal" role="form" name="formkelompok_kkn" id="kelompok_kkn" action="<?php echo (!$is_edit) ? site_url("kelompok_kkn/kelompok_kkn_add") : site_url("kelompok_kkn/kelompok_kkn_upd").'/'.$kelompok_kkn->id_kelompok;?>" method="post" >
-	<input type="hidden" class="form-control" value="<?php echo (!$is_edit) ? '' : $kelompok_kkn->id_kelompok;?>" name="klp__id_kelompok_kkn" id="klp__id_kelompok_kkn" placeholder="ID Kelompok KKN"   />
+	<form class="form-horizontal" role="form" name="formkelompok_kkn" id="kelompok_kkn" action="<?php echo (!$is_edit) ? site_url("kelompok_kkn/kelompok_kkn_add") : site_url("kelompok_kkn/kelompok_kkn_upd") . '/' . $kelompok_kkn->id_kelompok; ?>" method="post" >
+	<input type="hidden" class="form-control" value="<?php echo (!$is_edit) ? '' : $kelompok_kkn->id_kelompok; ?>" name="klp__id_kelompok_kkn" id="klp__id_kelompok_kkn" placeholder="ID Kelompok KKN"   />
 				<div class="form-group row">
 					<label class="col-sm-12 col-md-4 col-lg-3" for="klp__tempat_kkn">Tempat KKN</label>
 					<div class="col-sm-12 col-md-8 col-lg-9">
 						<select name="klp__tempat_kkn" id="klp__tempat_kkn" class="custom-select" >
 						<option value="">== Pilih Tempat KKN ==</option>
 		                    	<?php
-									if(isset($id_tempat)){
-										foreach($id_tempat as $data_id_tempat){
-											if($data_id_tempat->id_tempat==((!$is_edit) ? '' : $kelompok_kkn->id_tempat)){
-												echo '<option value="'.$data_id_tempat->id_tempat.'" selected>'.$data_id_tempat->nama_tempat.'</option>';
-											}else{
-												echo '<option value="'.$data_id_tempat->id_tempat.'" >'.$data_id_tempat->nama_tempat.'</option>';
-											}
-										}
-									}
-								?>						
+if (isset($id_tempat)) {
+    foreach ($id_tempat as $data_id_tempat) {
+        if ($data_id_tempat->id_tempat == ((!$is_edit) ? '' : $kelompok_kkn->id_tempat)) {
+            echo '<option value="' . $data_id_tempat->id_tempat . '" selected>' . $data_id_tempat->nama_tempat . '</option>';
+        } else {
+            echo '<option value="' . $data_id_tempat->id_tempat . '" >' . $data_id_tempat->nama_tempat . '</option>';
+        }
+    }
+}
+?>
+
 						</select>
 					</div>
 				</div>
-			
+
 				<div class="form-group row">
 					<label class="col-sm-12 col-md-4 col-lg-3" for="klp__nama_kelompok_kkn">Nama Kelompok KKN</label>
 					<div class="col-sm-12 col-md-8 col-lg-9">
-						<input type="text" class="form-control" value="<?php echo (!$is_edit) ? '' : $kelompok_kkn->nama_kelompok;?>" name="klp__nama_kelompok_kkn" id="klp__nama_kelompok_kkn" placeholder="Nama Kelompok KKN"   />
+						<input type="text" class="form-control" value="<?php echo (!$is_edit) ? '' : $kelompok_kkn->nama_kelompok; ?>" name="klp__nama_kelompok_kkn" id="klp__nama_kelompok_kkn" placeholder="Nama Kelompok KKN"   />
 					</div>
 				</div>
-			
+
 				<div class="form-group row">
 					<label class="col-sm-12 col-md-4 col-lg-3" for="klp__nama_ketua_kelompok">Nama Ketua Kelompok</label>
 					<div class="col-sm-12 col-md-8 col-lg-9">
 						<select name="klp__nama_ketua_kelompok" id="klp__nama_ketua_kelompok" class="custom-select" >
 						<option value="">== Pilih Nama Ketua Kelompok ==</option>
 		                    	<?php
-									if(isset($ketua_kelompok)){
-										foreach($ketua_kelompok as $data_ketua_kelompok){
-											if($data_ketua_kelompok->userid==((!$is_edit) ? '' : $kelompok_kkn->ketua_kelompok)){
-												echo '<option value="'.$data_ketua_kelompok->userid.'" selected>'.$data_ketua_kelompok->nama.'</option>';
-											}else{
-												echo '<option value="'.$data_ketua_kelompok->userid.'" >'.$data_ketua_kelompok->nama.'</option>';
-											}
-										}
-									}
-								?>						
+if (isset($ketua_kelompok)) {
+    foreach ($ketua_kelompok as $data_ketua_kelompok) {
+        if ($data_ketua_kelompok->userid == ((!$is_edit) ? '' : $kelompok_kkn->ketua_kelompok)) {
+            echo '<option value="' . $data_ketua_kelompok->userid . '" selected>' . $data_ketua_kelompok->nama . '</option>';
+        } else {
+            echo '<option value="' . $data_ketua_kelompok->userid . '" >' . $data_ketua_kelompok->nama . '</option>';
+        }
+    }
+}
+?>
 						</select>
+						<!-- <input type="text" class="form-control" value="<?php //echo (!$is_edit) ? '' : $kelompok_kkn->ketua_kelompok; ?>" onclick="cek_peserta_kkn()"  onkeypress="cek_peserta_kkn()" name="klp__nama_ketua_kelompok" id="klp__nama_ketua_kelompok" placeholder="Nama Ketua Kelompok"   /> -->
 					</div>
 				</div>
-			
+
 <hr/>
 		<div class="form-group row">
 			<div class="col-sm-12 col-md-12">
@@ -68,7 +70,7 @@ $is_edit=(isset($kelompok_kkn));
 </form>
 </div>
 
-<script src="<?php echo base_url();?>asset/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js" type="text/javascript"></script>
 <script type="text/javascript">
  $("#kelompok_kkn").validate({
  			errorClass: "is-invalid",
@@ -110,4 +112,10 @@ $is_edit=(isset($kelompok_kkn));
 				});///end Of Ajax
 		 }
 	 });
+
+	 function cek_peserta_kkn()
+	 {
+		 let nama = $("#klp__nama_ketua_kelompok").val();
+		 alert(nama);
+	 }
 </script>

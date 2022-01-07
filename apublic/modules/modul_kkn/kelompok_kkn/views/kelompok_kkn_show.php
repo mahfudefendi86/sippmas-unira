@@ -62,12 +62,26 @@ foreach ($kelompok_kkn as $dataview) {
                     <td><?php echo $dataview->nama_lookup; ?></td>
 
                     <td>
-                        <button type="button" class="edit btn btn-primary btn-sm"
-                            rel="<?php echo $dataview->id_kelompok; ?>" title="Edit Data"><i
-                                class="fa fa-pencil"></i></button>
-                        <button type="button" class="delete btn btn-danger btn-sm"
-                            rel="<?php echo $dataview->id_kelompok; ?>" title="Delete Data"><i
-                                class="fa fa-remove"></i></button>
+                        <div class="dropdown">
+                            <a class="btn btn-primary btn-sm dropdown-toggle" href="#" role="button"
+                                id="dropdown_<?php echo $dataview->id_kelompok; ?>" data-toggle="dropdown"
+                                aria-expanded="false">
+                                Action <i class="fa fa-gears"></i>
+                            </a>
+
+                            <ul class="dropdown-menu"
+                                aria-labelledby="label_dropdown_<?php echo $dataview->id_kelompok; ?>">
+                                <li><a class="dropdown-item"
+                                        href="<?php echo site_url('kkn/plotting/add/' . $dataview->id_kelompok); ?>"
+                                        title="Plotting Peserta KKN"><i class="fa fa-user"></i> Plotting Peserta</a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li><a class="dropdown-item edit" href="#" rel="<?php echo $dataview->id_kelompok; ?>"
+                                        title="Edit Data"><i class="fa fa-pencil"></i> Edit</a></li>
+                                <li><a class="dropdown-item delete" href="#" rel="<?php echo $dataview->id_kelompok; ?>"
+                                        title="Delete Data"><i class="fa fa-remove"></i> Delete</a></li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
                 <?php }

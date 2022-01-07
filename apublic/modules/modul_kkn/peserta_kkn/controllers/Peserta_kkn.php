@@ -24,7 +24,7 @@ class Peserta_kkn extends Member_Control
     {
         $data['title'] = "Daftar Peserta KKN";
         $data['s'] = $s;
-        $data['op_search'] = array();
+        $data['op_search'] = array("X.nama" => "Nama Mahasiswa");
         $this->template->kknview('peserta_kkn/peserta_kkn_index', $data);
     }
 
@@ -39,11 +39,26 @@ class Peserta_kkn extends Member_Control
             $row = $in['row'];
         }
 
+        $option = "WHERE X.identifikasi = 'MAHASISWA'";
+
+        if (isset($in['cari']) && ($in['cari'] != null || $in['cari'] != "")) {
+            if (isset($in['filter']) && ($in['filter'] != null || $in['filter'] != "")) {
+                // if ($in['filter'] != null || $in['filter'] != "") {
+                ($option == "") ? $option .= " WHERE " : $option .= " AND ";
+                $option .= $in['filter'] . " LIKE '%" . $in['cari'] . "%' ";
+            } else {
+                ($option == "") ? $option .= " WHERE " : $option .= " AND ";
+                $option .= " ( X.nama LIKE '%" . $in['cari'] . "%' ) ";
+            }
+        }
+
         /*** FILTER ORDER DATA ****/
         if (isset($in['sortby']) && $in['sortby'] != "") {
             $sort_field = array("x" => "X.status", "a" => "A.nama_mhs", "b" => "A.email", "c" => "A.hp", "d" => "A.nim", "e" => "A.jenis_kelamin", "f" => "A.tempat_lahir", "g" => "A.tgl_lahir", "h" => "A.alamat_domisili", "i" => "A.provinsi", "j" => "A.kota", "k" => "A.kecamatan", "l" => "A.kelurahan", "m" => "A.id_fakultas", "n" => "A.id_prodi", "o" => "A.kesehatan", "p" => "A.penyakit_diderita", "q" => "A.keluarga", "r" => "A.is_hamil", "s" => "A.is_kerja", "t" => "A.pekerjaan", "u" => "A.status_pekerjaan", "v" => "A.alamat_kerja", "w" => "A.ukuran_jaket", "x" => "A.berkas");
             $option .= " ORDER BY " . $sort_field[$in['sortby']] . " " . $in['sort'];
         }
+
+        //var_dump($option);
 
         /**** pengaturan pagination ***/
         $this->load->library('pagination');
@@ -60,7 +75,11 @@ class Peserta_kkn extends Member_Control
         $data['end'] = $start + $config['per_page'];
         $data['total_rows'] = $config['total_rows'];
         $data['peserta_kkn'] = $this->peserta_kkn_model->show_data_peserta_kkn($option, $start, $config['per_page'])->result();
-        $this->load->view('peserta_kkn/peserta_kkn_show', $data);
+        if (isset($in['action']) && $in['action'] == "cari") {
+            $this->load->view('peserta_kkn/peserta_kkn_cari_show', $data);
+        } else {
+            $this->load->view('peserta_kkn/peserta_kkn_show', $data);
+        }
     }
 
     public function peserta_kkn_add()
@@ -301,6 +320,13 @@ class Peserta_kkn extends Member_Control
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
             echo json_encode(array('msg' => $notif, 'status' => 'ERROR'));
         }
+    }
+
+    public function cari_peserta_kkn()
+    {
+        $data['title'] = "Cari Daftar Peserta KKN";
+        $data['op_search'] = array("X.nama" => "Nama Mahasiswa");
+        $this->load->view('peserta_kkn/peserta_kkn_cari_index', $data);
     }
 
 }

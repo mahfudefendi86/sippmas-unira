@@ -42,7 +42,7 @@ class Peserta_kkn_model extends CI_Model
                 LEFT JOIN kkn_peserta_registrasi A ON X.userid = A.id_peserta
                 LEFT JOIN tbl_fakultas B ON A.id_fakultas=B.id_fakultas
                 LEFT JOIN tbl_prodi C ON A.id_prodi=C.id_prodi
-                WHERE X.identifikasi = 'MAHASISWA'";
+                "; //WHERE X.identifikasi = 'MAHASISWA'";
         if ($option != null) {
             $sql .= $option;
         }
