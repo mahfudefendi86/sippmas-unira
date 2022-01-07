@@ -11,6 +11,6 @@ class Main_kkn extends CI_Controller
     {
         //$data['title'] = "Dashboard KKN";
         //$this->load->view('main_kkn/main_kkn_index', $data);
-        redirect('peserta/kkn');
+        redirect('kkn/peserta');
     }
 }
